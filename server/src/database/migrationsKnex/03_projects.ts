@@ -9,7 +9,6 @@ export async function up(knex:Knex) {
     table.string('date_start').notNullable();
     table.string('date_end').notNullable();
     table.double('completion_percentage').notNullable();
-    table.integer('fk_worker').notNullable().references('id').inTable('workers');
   })
 }
 

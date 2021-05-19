@@ -4,7 +4,7 @@ export async function up(knex:Knex) {
   return knex.schema.createTable('no_related_workers',table =>{
     table.increments('id').primary();
     table.integer('fk_worker');
-    table.string('projec_tdata').notNullable();
+    table.integer('project_data').notNullable().references('id').inTable('projects');
     table.integer('tasks_performed').notNullable();
     table.float('task_value').notNullable();
     table.string('responsibility').notNullable();
