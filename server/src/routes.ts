@@ -1,106 +1,23 @@
 import express, { request, response } from 'express'
-import knex from './database/connection'
+import noRelatedWorkerController from './controllers/no-related-workerControler'
+import projectsController from './controllers/projectsController'
+import relatedWorkerController from './controllers/related-workerControler'
+import workerController from './controllers/workerController'
 
 const routes = express.Router()
+const worker = new workerController()
+const projects = new projectsController()
+const relatedWork = new relatedWorkerController()
+const noRelatedWork = new noRelatedWorkerController()
 
-routes.get('/workers', async (request,response)=>{
-  const workers = await knex('workers').select('*')
+routes.get('/workers', worker.getWorkers)
+routes.post('/workers',worker.create)
 
-  //Transformando dados
-  const serializedWorkers  = workers.map(work => {
-    return {
-      id: work.id,
-      name: work.name,
-      imgUrl: `http://localhost:3333/uploads/${work.image}`,
-    }
-  })
-  response.send(serializedWorkers)
-})
+routes.post('/related-worker',relatedWork.create)
 
-routes.post('/workers',async (request,response)=>{
-  const {
-    image,
-    name,
-    date_nasc,
-    level
-  }=request.body
+routes.post('/no-related-worker',noRelatedWork.create)
 
-  await knex('workers').insert({
-    image,
-    name,
-    date_nasc,
-    level
-  })
-
-  return response.json({success: true})
-})
-
-routes.post('/related-worker',async (request,response)=>{
- const {
-    fk_worker,
-    project_data,
-    tasks_performed,
-    task_value,
-  } = request.body
- await knex('related_workers').insert({
-    fk_worker,
-    project_data,
-    tasks_performed,
-    task_value,
- })
-
-      return response.json({succes: true})
-})
-
-routes.post('/no-related-worker', async(request,response)=>{
-  const{
-    fk_worker,
-    project_data,
-    tasks_performed,
-    task_value,
-    responsibility,
-    departament,
-    qnt_delays,
-    qnt_houres_worked
-  }= request.body
-   
-  await knex('no_related_workers').insert({
-    fk_worker,
-    project_data,
-    tasks_performed,
-    task_value,
-    responsibility,
-    departament,
-    qnt_delays,
-    qnt_houres_worked
-   })
-
-   return response.json({success:true})
-})
-
-routes.post('/projects', async (request,response)=>{
-
-    const {
-      name,
-      client,
-      project_cost,
-      date_start,
-      date_end,
-      completion_percentage
-    }= request.body
-
-    await knex('projects').insert({
-      name,
-      client,
-      project_cost,
-      date_start,
-      date_end,
-      completion_percentage
-    })
-
-    return response.json({success: true})
-
-})
+routes.post('/projects',projects.create)
 
 
 export default routes
