@@ -49,25 +49,49 @@ class workerController{
     
     if(!worker) return response.status(400).json({message: 'Trabalhador desconhecido'})
     
+// interface rW{
+//     id: number;
+//     fk_worker: number;
+//     project_data: number;
+//     tasks_performed: number;
+//     task_value: number;
+//     image: string;
+//     name: string;
+//     date_nasc: string;
+//     level: string;
+// }
+
     const relatedWorker = await knex('related_workers')
     .join('workers', 'related_workers.fk_worker','=','workers.id')
     .where('workers.id',id)
+    .join('projects','related_workers.project_data','=','projects.id')
+    .where('workers.id',id)
+    
     
   
     const noRelatedWorker = await knex('no_related_workers')
     .join('workers', 'no_related_workers.fk_worker','=','workers.id')
     .where('workers.id',id)
-    
-    
-    if(noRelatedWorker.length>0) return response.json(noRelatedWorker)
+    .join('projects','no_related_workers.project_data','=','projects.id')
+    .where('workers.id',id)
     
 
-    else if(relatedWorker.length>0) return response.json(relatedWorker)
+    
+    if(noRelatedWorker.length>0) return response.json({
+      Estado: 'Trabalhador Inserido',
+      ...noRelatedWorker
+    })
+    
+
+    else if(relatedWorker.length>0) return response.json({
+      Estado: 'Trabalhador Inserido',
+      ...relatedWorker
+    })
 
     else{
       return response.json({
-        worker,
-        Estado: 'Trabalhador não Inserido'
+        Estado: 'Trabalhador não Inserido',
+        ...worker
       })
     }
   }

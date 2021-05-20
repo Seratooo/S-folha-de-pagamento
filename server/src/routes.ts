@@ -21,6 +21,7 @@ routes.post('/related-worker',relatedWork.create)
 routes.post('/no-related-worker',noRelatedWork.create)
 
 routes.post('/projects',projects.create)
+routes.get('/projects',projects.getAllProjects)
 
 
 export default routes
