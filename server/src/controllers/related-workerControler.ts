@@ -12,15 +12,16 @@ class relatedWorkerController{
        tasks_performed,
        task_value,
      } = request.body
-   
-    await knex('related_workers').insert({
-       fk_worker: idWorker.getLastWorker,
+
+   const dataRealtedWorker = {
+       fk_worker: idWorker.getLastWorker(),
        project_data,
        tasks_performed,
        task_value,
-    })
-   
-         return response.json({succes: true})
+   }
+    await knex('related_workers').insert(dataRealtedWorker)
+
+         return response.json({dataRealtedWorker})
    }
 }
 

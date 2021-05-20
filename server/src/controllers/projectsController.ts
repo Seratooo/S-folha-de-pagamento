@@ -13,16 +13,17 @@ class projectsController{
       completion_percentage
     }= request.body
 
-    await knex('projects').insert({
+    const dataProjects = {
       name,
       client,
       project_cost,
       date_start,
       date_end,
       completion_percentage
-    })
+    }
+    await knex('projects').insert(dataProjects)
 
-    return response.json({success: true})
+    return response.json({dataProjects})
 
 }
 }

@@ -11,6 +11,9 @@ const relatedWork = new relatedWorkerController()
 const noRelatedWork = new noRelatedWorkerController()
 
 routes.get('/workers', worker.getWorkers)
+routes.get('/workers/:id', worker.show)
+routes.get('/workers-search', worker.index)
+
 routes.post('/workers',worker.create)
 
 routes.post('/related-worker',relatedWork.create)

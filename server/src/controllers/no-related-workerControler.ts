@@ -17,8 +17,8 @@ class noRelatedWorkerController{
       qnt_houres_worked
     }= request.body
      
-    await knex('no_related_workers').insert({
-      fk_worker: idWorker.getLastWorker,
+    const dataNoRelatedWorkers = {
+      fk_worker: idWorker.getLastWorker(),
       project_data,
       tasks_performed,
       task_value,
@@ -26,9 +26,10 @@ class noRelatedWorkerController{
       departament,
       qnt_delays,
       qnt_houres_worked
-     })
+    }
+    await knex('no_related_workers').insert(dataNoRelatedWorkers)
   
-     return response.json({success:true})
+     return response.json(dataNoRelatedWorkers)
   }
 }
 
