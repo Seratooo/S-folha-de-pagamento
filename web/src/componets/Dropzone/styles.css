@@ -1,6 +1,6 @@
 .dropzone {
   height: 20rem;
-  background: #e8e9eb79;
+  background: #E8E9EB;
   border-radius: 10px;
   box-shadow: 1px .7px 1px rgba(0, 0, 0, 0.09);
   width: 40rem;
@@ -24,7 +24,7 @@
   width: calc(100% - 60px);
   height: calc(100% - 60px);
   border-radius: 10px;
-  border: 1px dashed #E5E93E;
+  border: 3px dashed #E5E93E;
 
   display: flex;
   flex-direction: column;

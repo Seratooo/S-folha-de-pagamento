@@ -2,6 +2,11 @@ div.conteudo{
   display: flex;
   flex-direction: column;
   align-items: center;
+  background-color: #353a406e;
+  width: 100%;
+  height: 100%;
+  border-radius:5px;
+  padding: 10px 0px 50px;
 }
 
 form{
