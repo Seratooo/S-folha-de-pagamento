@@ -1,3 +1,6 @@
+body{
+  overflow: hidden;
+}
 div.elements{
  
 }
@@ -7,35 +10,67 @@ div.corpo{
   flex-direction: row;
   
   margin: auto;
+
 }
 
 aside.left{
   background-color: #353A40;
-  width: 12rem;
+  width: 15rem;
   height: calc(100vh - 2.75rem);
   display: flex;
   flex-direction: column;
   color: #E8E9EB;
-  font-family: 'Roboto';
+  font-family: 'Ubuntu',sans-serif;
   font-size: 0.9rem;
+  transition: 0.6s;
+}
+aside.on{
+  width: 4rem;
 }
 aside.left div.menuToggle{
   text-align: right;
   margin: 1rem .8rem 1rem 0rem;
+  cursor: pointer;
+}
+aside.left div.menuToggle:hover{
+  color: #E5E93E;
 }
 aside.left div.texts{
     margin-top: 4rem;
 }
+aside.left div.texts p{
+  display: flex;
+  align-items: center;
+}
+aside.left div.texts p img{
+  order: -1;
+  margin-right:12px;
+  
+}
+
 
 aside.left div.texts p{
+  background-color: #e8e9eb23;
   margin-bottom: .6rem;
   margin-left: .8rem;
+  padding: 10px;
+  border-radius: 3px 0px 0px 3px;
+  transition: 0.5s;
+  cursor: pointer;
+
+  
+}
+aside.left div.texts p:hover{
+  background-color: rgb(3, 128, 128);
 }
 
 aside.left div.boxButtom{
   margin-top: auto;
   align-self: center;
   margin-bottom: 1rem;
+}
+aside.on div.boxButtom{
+  display: none;
 }
 aside.left div.boxButtom button{
   width: 7rem;
@@ -51,6 +86,8 @@ aside.right{
   background-color: #E8E9EB;
   width: 100vw;
   height: calc(100vh - 2.75rem);
+  overflow: auto;
+
 }
 aside.right div.content{
   display: block;
@@ -66,5 +103,6 @@ aside.right div.elements1{
   gap: 1rem;
   justify-content: center;
   flex-wrap: wrap;
+  
 
 }
