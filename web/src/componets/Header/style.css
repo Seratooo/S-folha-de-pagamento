@@ -1,0 +1,45 @@
+header{
+  background-color: #353A40;
+  padding: 8px;
+  border-bottom: 1px solid #e8e9eba4;
+}
+
+header div.elements{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+}
+
+div.content,div.item,div.btnSearchBox{
+  display: flex;
+  align-items: center;
+}
+div.item{
+  color: #E8E9EB;
+  font-family: 'Roboto';
+  margin: 0px 10px 0px 10px;
+  font-size: 0.8rem;
+}
+div.btnSearchBox{
+  margin-left: 15px;
+}
+div.btnSearchBox input{
+  width: 10rem;
+  height: 1.7rem;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 3px;
+  text-align: center;
+  color: #353A40;
+}
+div.btnSearchBox button{
+  background-color: #E5E93E;
+  color: #353A40;
+  border: none;
+  width: 8rem;
+  height: 1.7rem;
+  margin-left: 8px;
+  border-radius: 3px;
+}

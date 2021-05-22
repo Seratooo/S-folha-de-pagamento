@@ -1,0 +1,70 @@
+div.elements{
+ 
+}
+
+div.corpo{
+  display: flex;
+  flex-direction: row;
+  
+  margin: auto;
+}
+
+aside.left{
+  background-color: #353A40;
+  width: 12rem;
+  height: calc(100vh - 2.75rem);
+  display: flex;
+  flex-direction: column;
+  color: #E8E9EB;
+  font-family: 'Roboto';
+  font-size: 0.9rem;
+}
+aside.left div.menuToggle{
+  text-align: right;
+  margin: 1rem .8rem 1rem 0rem;
+}
+aside.left div.texts{
+    margin-top: 4rem;
+}
+
+aside.left div.texts p{
+  margin-bottom: .6rem;
+  margin-left: .8rem;
+}
+
+aside.left div.boxButtom{
+  margin-top: auto;
+  align-self: center;
+  margin-bottom: 1rem;
+}
+aside.left div.boxButtom button{
+  width: 7rem;
+  height: 2.5rem;
+  border: none;
+  background-color: #E5E93E;
+  color: #353A40;
+  border-radius: 3px;
+
+}
+
+aside.right{
+  background-color: #E8E9EB;
+  width: 100vw;
+  height: calc(100vh - 2.75rem);
+}
+aside.right div.content{
+  display: block;
+  background-color: #fff;
+  width: 97%;
+  margin: 1rem auto;
+  border-radius:6px;
+  padding: 10px;
+}
+aside.right div.elements1{
+ 
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+
+}
