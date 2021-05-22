@@ -22,12 +22,12 @@ export default function Header (){
 
             <div className="item">
               <img src={tv} alt="icon" />
-              <p>Trabalhador Vinculador</p>
+              <p>Trabalhadores Vinculados</p>
             </div>
             
             <div className="item">
               <img src={tnv} alt="icon" />
-              <p>Trabalhador Não Vinculador</p>
+              <p>Trabalhadores Não Vinculados</p>
             </div>
             
             <div className="item">

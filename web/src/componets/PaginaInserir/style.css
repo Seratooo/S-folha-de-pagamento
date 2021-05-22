@@ -1,0 +1,80 @@
+div.conteudo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+form{
+  margin-top: 2rem;
+}
+fieldset{
+  border: none;
+  padding:10px 0px 10px 0px;
+}
+fieldset input{
+  width: 20rem;
+  height: 4rem;
+  border: none;
+  background-color: #E8E9EB;
+  color: #353A40;
+  font-size: 1.1rem;
+  box-shadow: 1px .7px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 10px;
+  
+
+
+}
+fieldset select{
+  width: 15rem;
+  height: 4rem;
+  border: none;
+  background-color: #E8E9EB;
+  color: #353A40;
+  font-size: 1.1rem;
+  box-shadow: 1px .7px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  padding: 10px;
+}
+fieldset#fildTrabalhador select{
+  width: 40rem;
+  color:#E8E9EB;
+  background-color: rgb(3, 128, 128);
+}
+fieldset#fild1 select{
+  margin-left: 2rem;
+}
+fieldset#fild1 input{
+  width: 23rem;
+}
+fieldset#fild2 select{
+margin-right: 2rem;
+}
+fieldset#fild2 input{
+  width: 23rem;
+}
+fieldset#fild2 div.Range{
+  display: flex;
+  align-items: center;
+  margin: 20px 0px 20px 0px;
+}
+fieldset#fild2 div.Range select{
+  margin-left: 2rem;
+  margin-right: 0;
+}
+
+fieldset#fild2 div.Horas{
+  margin-top: 20px;
+}
+form button{
+  width: 40rem;
+  height: 4rem;
+  font-size: 1.1rem;
+  border: none;
+  background-color: #E5E93E;
+  color: #353A40;
+  box-shadow: 1px .7px 3px rgba(0, 0, 0, 0.3);
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
