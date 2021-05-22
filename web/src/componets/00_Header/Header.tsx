@@ -4,7 +4,7 @@ import logo from '../../assets/logo.svg'
 import tv from '../../assets/tv.svg'
 import tnv from '../../assets/tnv.svg'
 import projectos from '../../assets/projectos.svg'
-
+import {Link} from 'react-router-dom'
 
 
 
@@ -15,7 +15,7 @@ export default function Header (){
          
         
         <div className="logo">
-            <img src={logo} alt="logo" />
+      <Link to="/"><img src={logo} alt="logo" /></Link>
         </div>
 
         <div className="content">
