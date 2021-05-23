@@ -67,7 +67,7 @@ aside.left div.texts p:hover{
 aside.left div.boxButtom{
   margin-top: auto;
   align-self: center;
-  margin-bottom: 1rem;
+  margin-bottom: 2rem;
 }
 aside.on div.boxButtom{
   display: none;
