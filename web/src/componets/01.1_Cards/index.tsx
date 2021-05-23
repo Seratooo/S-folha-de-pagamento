@@ -12,8 +12,6 @@ export default function PaginaInicial(){
               <Start4/>
               <Start5/>
               
-              <Start4/>
-              <Start5/>
     </>
   )
 }

@@ -24,10 +24,10 @@ export const  Start = (props:data) =>{
 export const Start2 = ()=>{
   return(
     <div className="Principal" style={{background:"#3EE9C0"}}>
-    <div className="title" style={{width:'24rem', height:'3rem'}}>
+    <div className="title" style={{width:'24rem', height:'4rem'}}>
         <p>Projectos Concluídos</p>
     </div>
-    <div className="qntd" style={{width:'24rem', height:'5rem'}}>
+    <div className="qntd" style={{width:'24rem', height:'6rem'}}>
         <p>65%</p>
     </div>
     </div>
@@ -36,10 +36,10 @@ export const Start2 = ()=>{
 export const Start3 = ()=>{
   return(
     <div className="Principal" >
-    <div className="title" style={{width:'31rem', height:'3rem'}}>
+    <div className="title" style={{width:'31rem', height:'4rem'}}>
         <p>Trabalhador com melhor desempenho</p>
     </div>
-    <div className="qntd" style={{width:'31rem', height:'5rem'}}>
+    <div className="qntd" style={{width:'31rem', height:'6rem'}}>
         <p>Abubacar Correia</p>
     </div>
     </div>
@@ -49,10 +49,10 @@ export const Start3 = ()=>{
 export const Start4 = ()=>{
   return(
     <div className="Principal" >
-    <div className="title" style={{width:'31rem', height:'4rem'}}>
+    <div className="title" style={{width:'31rem', height:'5rem'}}>
         <p>Trabalhadores recentes</p>
     </div>
-    <div className="qntd" style={{width:'31rem', height:'8rem'}}>
+    <div className="qntd" style={{width:'31rem', height:'9rem'}}>
         <img src={trabalhadores_recentes} alt="trabalhadores recentes" style={{width:'8rem'}}/>
     </div>
     </div>
@@ -62,10 +62,10 @@ export const Start4 = ()=>{
 export const Start5 = ()=>{
   return(
     <div className="Principal" style={{background:"#3EE9C0"}}>
-    <div className="title" style={{width:'24rem', height:'4rem'}}>
+    <div className="title" style={{width:'24rem', height:'5rem'}}>
         <p>Projectos Concluídos</p>
     </div>
-    <div className="qntd" style={{width:'24rem', height:'8rem'}}>
+    <div className="qntd" style={{width:'24rem', height:'9rem'}}>
     <img src={Meusclientes} alt="trabalhadores recentes" style={{width:'8rem'}}/>
     </div>
     </div>

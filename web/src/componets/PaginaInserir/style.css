@@ -3,14 +3,16 @@ div.conteudo{
   flex-direction: column;
   align-items: center;
   background-color: #353a406e;
-  width: 100%;
-  height: 100%;
   border-radius:5px;
   padding: 10px 0px 50px;
+  flex: 1;
 }
 
 form{
+  display: flex;
+  flex-direction: column;
   margin-top: 2rem;
+  justify-content: center;
 }
 fieldset{
   border: none;
@@ -26,9 +28,6 @@ fieldset input{
   box-shadow: 1px .7px 3px rgba(0, 0, 0, 0.3);
   border-radius: 5px;
   padding: 10px;
-  
-
-
 }
 fieldset select{
   width: 15rem;
@@ -69,7 +68,7 @@ fieldset#fild2 div.Range select{
 }
 
 fieldset#fild2 div.Horas{
-  margin-top: 20px;
+  margin: 20px 0px 20px 0px;
 }
 form button{
   width: 40rem;
@@ -82,4 +81,9 @@ form button{
   border-radius: 5px;
   cursor: pointer;
   margin-top: 20px;
+  transition: .6s;
+}
+form button:hover{
+  color: #E8E9EB;
+  background-color: rgb(3, 128, 128);
 }
