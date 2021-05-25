@@ -1,0 +1,37 @@
+.contentMain{
+  display: flex;
+  flex-direction: column;
+  
+  background-color: #353a406e;
+  border-radius: 5px;
+  overflow: hidden;
+  box-shadow: 1px .8px 3px rgba(0, 0, 0, 0.6);
+  width: 17.2rem;
+  height: 16rem;
+  cursor: pointer;
+}
+.contentImg{
+  flex: 1;
+  height: calc(70vh - 16.4rem);
+  display: flex;
+  filter: brightness(60%);
+  transition: 0.6s;
+}
+.contentImg:hover{
+  filter: brightness(100%);
+}
+.contentImg img{
+  flex: 1;
+  object-fit: contain;
+}
+.contentText{
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  font-family: 'Roboto',sans-serif;
+  color: #353A40;
+}
+.contentText p{
+  flex: 1;
+  font-size: .8rem;
+}
