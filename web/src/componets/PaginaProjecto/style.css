@@ -1,0 +1,56 @@
+div.principalProjecto{
+  flex: 1;
+  background-color: #E8E9EB;
+  border-radius: 8px;
+
+}
+div.contentProjecto{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-family: 'Roboto',sans-serif;
+  padding: 10px;
+}
+div.contentProjecto h1{
+  color: #353A40;
+}
+div.Asides{
+  border-radius: 8px;
+  margin: 15px 5px;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  overflow: hidden;
+  box-shadow: 1px .8px 5px rgba(0, 0, 0, 0.3);
+}
+div.Asides strong{
+  font-size: 1.5rem;
+}
+aside.leftProject,aside.rightProjecto{
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  font-size: 1rem;
+  background-color: #353A40;
+  color: #E8E9EB;
+  padding: 15px;
+  gap: 1rem;
+
+}
+div.contentProjecto button{
+  font-size: 1.1rem;
+  color: #353A40;
+  width: 25rem;
+  height: 3.5rem;
+  border: none;
+  border-radius: 8px;
+  background-color: #E5E93E;
+  box-shadow: 1px .8px 5px rgba(0, 0, 0, 0.3);
+  transition: .6s;
+}
+div.contentProjecto button:hover{
+  cursor: pointer;
+  background-color: rgb(3, 128, 128);
+  color: #E8E9EB;
+}
