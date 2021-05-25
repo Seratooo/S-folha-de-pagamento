@@ -79,7 +79,13 @@ aside.left div.boxButtom button{
   background-color: #E5E93E;
   color: #353A40;
   border-radius: 3px;
-
+  box-shadow: 1px .8px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: .6s;
+}
+aside.left div.boxButtom button:hover{
+  background-color: rgb(3, 128, 128);
+  color: #E8E9EB;
 }
 
 aside.right{
