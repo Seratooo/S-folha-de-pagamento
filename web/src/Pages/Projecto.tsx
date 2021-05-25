@@ -1,7 +1,7 @@
 import React from 'react'
-import Header from '../componets/00_Header/Header';
-import Corpo from '../componets/01_Main/corpo';
-import PaginaProjecto from '../componets/PaginaProjecto';
+import Header from '../components/00_Header/Header';
+import Corpo from '../components/01_Main/corpo';
+import PaginaProjecto from '../components/PaginaProjecto';
 
 
 export default function Trabalhador() {
