@@ -21,6 +21,7 @@ div.item{
   font-family: 'Roboto';
   margin: 0px 10px 0px 10px;
   font-size: 0.8rem;
+  cursor: pointer;
 }
 div.btnSearchBox{
   margin-left: 15px;
@@ -42,4 +43,11 @@ div.btnSearchBox button{
   height: 1.7rem;
   margin-left: 8px;
   border-radius: 3px;
+  box-shadow: 1px .8px 3px rgba(0, 0, 0, 0.3);
+  cursor: pointer;
+  transition: .6s;
+}
+div.btnSearchBox button:hover{
+  background-color:  rgb(3, 128, 128);
+  color: #E8E9EB;
 }
