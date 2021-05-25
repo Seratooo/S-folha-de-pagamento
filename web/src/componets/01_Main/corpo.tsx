@@ -16,8 +16,8 @@ interface dados{
 export default function Corpo(props:dados){
   const [textTrabalhador,setTextTrabalhador] = useState('Inserir trabalhador') 
   const [textAtualizar,setTextAtualizar] = useState('Actualizar dados')
-  const [textListT,setTextListT] = useState('Listar trabalhadores')
-  const [textListP,setTextListP] = useState('Listar projectos') 
+  const [textListT,setTextListT] = useState('Trabalhadores')
+  const [textListP,setTextListP] = useState('Projectos') 
 
 
   
@@ -25,15 +25,11 @@ export default function Corpo(props:dados){
    const signal = document.querySelector('.left')?.classList.toggle('on')
     
    if(!signal){
-    setTextTrabalhador('Inserir trabalhador')
-    setTextAtualizar('Actualizar dados')
-    setTextListT('Listar trabalhadores')
-    setTextListP('Listar projectos')
+    setTextTrabalhador('Inserir trabalhador'); setTextAtualizar('Actualizar dados'); 
+    setTextListT('Trabalhadores'); setTextListP('Projectos');
   }else{
-    setTextTrabalhador('')
-    setTextAtualizar('')
-    setTextListT('')
-    setTextListP('')
+    setTextTrabalhador(''); setTextAtualizar('');
+    setTextListT(''); setTextListP('');
   }
    
   }
