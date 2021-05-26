@@ -47,7 +47,7 @@ class workerController{
     const workers = await knex('workers')
     .join('related_workers', 'related_workers.fk_worker','=','workers.id')
     .join('projects','related_workers.project_data','=','projects.id')
-    .where('related_workers.project_data',id)
+    .where('related_workers.project_data',id).select('workers.name')
 
     return response.json(workers)
    }
@@ -57,7 +57,7 @@ class workerController{
     const workers = await knex('workers')
     .join('no_related_workers', 'no_related_workers.fk_worker','=','workers.id')
     .join('projects','no_related_workers.project_data','=','projects.id')
-    .where('no_related_workers.project_data',id)
+    .where('no_related_workers.project_data',id).select('workers.name')
 
     return response.json(workers)
    }
