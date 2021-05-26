@@ -41,6 +41,26 @@ class workerController{
     })
     response.send(serializedWorkers)
   }
+   async showRelatedWorkers_withProject(request:Request,response:Response){
+    const { id } = request.params
+    
+    const workers = await knex('workers')
+    .join('related_workers', 'related_workers.fk_worker','=','workers.id')
+    .join('projects','related_workers.project_data','=','projects.id')
+    .where('related_workers.project_data',id)
+
+    return response.json(workers)
+   }
+   async showNoRelatedWorkers_withProject(request:Request,response:Response){
+    const { id } = request.params
+    
+    const workers = await knex('workers')
+    .join('no_related_workers', 'no_related_workers.fk_worker','=','workers.id')
+    .join('projects','no_related_workers.project_data','=','projects.id')
+    .where('no_related_workers.project_data',id)
+
+    return response.json(workers)
+   }
 
   async show(request:Request,response:Response){
 
@@ -100,7 +120,7 @@ class workerController{
     
     const {name,level}= request.query
     const dataWorker = await knex('workers').where('name','like', String('%'+name+'%')).where('level','like', String('%'+level+'%'))
-    return response.json({dataWorker})
+    return response.json(dataWorker)
     
     }
     getLastWorker(){
