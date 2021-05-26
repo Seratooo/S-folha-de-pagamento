@@ -12,6 +12,9 @@ const noRelatedWork = new noRelatedWorkerController()
 
 routes.get('/workers', worker.getWorkers)
 routes.get('/workers/:id', worker.show)
+routes.get('/workers_related_by_project/:id', worker.showRelatedWorkers_withProject)
+routes.get('/workers_norelated_by_project/:id', worker.showNoRelatedWorkers_withProject)
+
 routes.get('/workers-search', worker.index)
 
 routes.post('/workers',worker.create)
