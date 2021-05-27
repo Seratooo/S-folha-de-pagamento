@@ -18,7 +18,7 @@ export default function PaginaTrabalhador() {
  
   return(
     <div className="PrincipalTrabalhador">
-  <Link to="/update"><div className="voltar">
+  <Link to="/show-workers"><div className="voltar">
         <FiArrowLeft style={{width:'35px'}}/> voltar
       </div></Link>
 
