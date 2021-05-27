@@ -54,7 +54,7 @@ fieldset#fild1 input{
 fieldset#fild2 select{
 margin-right: 2rem;
 }
-fieldset#fild2 input{
+fieldset#fild2 div.nRelacionado input#number{
   width: 23rem;
 }
 fieldset#fild2 div.Range{
@@ -66,10 +66,15 @@ fieldset#fild2 div.Range select{
   margin-left: 2rem;
   margin-right: 0;
 }
-
-fieldset#fild2 div.Horas{
-  margin: 20px 0px 20px 0px;
+fieldset#fild2 div.nRelacionado div.Horas input{
+  width: 19rem;
 }
+fieldset#fild2 div.nRelacionado div.Horas{
+  display: flex;
+  margin: 25px 0px;
+  justify-content: space-between; 
+} 
+
 form button{
   width: 40rem;
   height: 4rem;
