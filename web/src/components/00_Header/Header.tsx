@@ -37,7 +37,7 @@ export default function Header (){
 
             <div className="btnSearchBox">
                 <input type="text" placeholder="Pesquisar"/>
-                <button>Adicionar Projecto</button>
+           <Link to="/add-project"><button>Adicionar Projecto</button></Link> 
             </div>
         </div>
        </div> 
