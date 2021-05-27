@@ -1,0 +1,17 @@
+
+form{
+  flex-wrap: wrap;
+  width: 42rem;
+  padding-bottom: 40px;
+}
+form button{
+  width: 42rem;
+}
+
+fieldset{
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
