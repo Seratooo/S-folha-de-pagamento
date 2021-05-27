@@ -18,7 +18,7 @@ class noRelatedWorkerController{
     }= request.body
      
     const dataNoRelatedWorkers = {
-      fk_worker: idWorker.getLastWorker(),
+      fk_worker,
       project_data,
       tasks_performed,
       task_value,
