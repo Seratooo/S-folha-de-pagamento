@@ -1,17 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Projecto from '../03_Projecto'
 import './style.css'
 import {Link} from 'react-router-dom'
+import api from '../../services/api'
+interface dadosProjecto{
+  id: number;
+  name: string;
+  client: string;
+  project_cost: string;
+  date_start: string;
+  date_end: string;
+  completion_percentage:number;
+}
 export default function PaginaListarProjectos() {
-  
+
+  const [projectos,setProjectos] = useState<dadosProjecto[]>([])
+  useEffect(()=>{
+  api.get('projects').then(Response=>{
+        setProjectos(Response.data)
+  })
+},[])
   return(
     <>
-   <Link to="/show-workers/project" style={{textDecoration:'none'}}> <Projecto nomeDoProjecto="Projecto Filadelfia"/></Link> 
-   <Link to="/show-workers/project" style={{textDecoration:'none'}}>  <Projecto nomeDoProjecto="Projecto Kiluamge"/> </Link> 
-   <Link to="/show-workers/project" style={{textDecoration:'none'}}>  <Projecto nomeDoProjecto="Projecto Manguiz"/></Link> 
-   <Link to="/show-workers/project" style={{textDecoration:'none'}}>  <Projecto nomeDoProjecto="Projecto Mendelheve"/></Link> 
-   <Link to="/show-workers/project" style={{textDecoration:'none'}}>  <Projecto nomeDoProjecto="Projecto Keve"/></Link> 
-   <Link to="/show-workers/project" style={{textDecoration:'none'}}> <Projecto nomeDoProjecto="Projecto Angola On"/></Link> 
-    </>
+  {projectos.map((projecto) => (
+  <Link to="/show-workers/project" style={{textDecoration:'none'}}> <Projecto nomeDoProjecto={projecto} key={projecto.id}/></Link> 
+  ) )}
+  </>
   )
 }
