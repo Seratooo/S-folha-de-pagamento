@@ -14,14 +14,14 @@ class relatedWorkerController{
      } = request.body
 
    const dataRealtedWorker = {
-       fk_worker: idWorker.getLastWorker(),
+       fk_worker,
        project_data,
        tasks_performed,
        task_value,
    }
     await knex('related_workers').insert(dataRealtedWorker)
 
-         return response.json({dataRealtedWorker})
+         return response.json(dataRealtedWorker)
    }
 }
 
