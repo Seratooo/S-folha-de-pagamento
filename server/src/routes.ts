@@ -21,6 +21,9 @@ routes.post('/image',multer(multerConfig).single("file"),(req,res)=>{
 
 routes.get('/workers', worker.getWorkers)
 routes.get('/workers/:id', worker.show)
+routes.get('/allworkers/', worker.showall)
+
+
 routes.get('/workers_related_by_project/:id', worker.showRelatedWorkers_withProject)
 routes.get('/workers_norelated_by_project/:id', worker.showNoRelatedWorkers_withProject)
 
