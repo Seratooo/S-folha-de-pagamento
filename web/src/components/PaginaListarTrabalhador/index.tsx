@@ -18,7 +18,7 @@ export default function PaginaListarTrabalhador() {
   return(
     <>
     {trabalhadores.map(trabalhador=>(
-    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>     <UmTrabalhador imagem={trabalhador.imgUrl} nome={trabalhador.name} descricao={"codigo: " +trabalhador.id} key={trabalhador.id}/> </Link>
+    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>     <UmTrabalhador imgUrl={trabalhador.imgUrl} name={trabalhador.name} id={trabalhador.id} key={trabalhador.id}/> </Link>
     ))}
     </>
   )
