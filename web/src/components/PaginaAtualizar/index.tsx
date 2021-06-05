@@ -10,17 +10,17 @@ export default function PaginaAtualizar() {
 
   return(
     <>
-    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>     <UmTrabalhador imagem={workerImg1} nome="Mariana Morena Margarida" descricao="Especialista em blabla bla bla"/> </Link>
-    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>   <UmTrabalhador  imagem={workerImg2} nome="André Mahatham" descricao="Diretor de blabla bla bla"/> </Link>
-    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>  <UmTrabalhador  imagem={workerImg3} nome="Shaddam Amargebraham" descricao="Engenheiro de blabla bla bla"/> </Link>
+    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>     <UmTrabalhador imgUrl={workerImg1} name="Mariana Morena Margarida" id={1}/> </Link>
+    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>   <UmTrabalhador  imgUrl={workerImg2} name="André Mahatham" id={2}/> </Link>
+    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>  <UmTrabalhador  imgUrl={workerImg3} name="Shaddam Amargebraham" id={4}/> </Link>
 
-    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>   <UmTrabalhador imagem={workerImg1} nome="Mariana Morena Margarida" descricao="Especialista em blabla bla bla"/> </Link>
-    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>  <UmTrabalhador imagem={workerImg2} nome="André Mahatham" descricao="Diretor de blabla bla bla"/> </Link>
-    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>  <UmTrabalhador imagem={workerImg3} nome="Shaddam Amargebraham" descricao="Engenheiro de blabla bla bla"/> </Link>
+    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>   <UmTrabalhador imgUrl={workerImg1} name="Mariana Morena Margarida" id={5}/> </Link>
+    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>  <UmTrabalhador imgUrl={workerImg2} name="André Mahatham" id={6}/> </Link>
+    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>  <UmTrabalhador imgUrl={workerImg3} name="Shaddam Amargebraham" id={7}/> </Link>
 
-    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>   <UmTrabalhador imagem={workerImg1} nome="Mariana Morena Margarida" descricao="Especialista em blabla bla bla"/> </Link>
-    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>   <UmTrabalhador imagem={workerImg2} nome="André Mahatham" descricao="Diretor de blabla bla bla"/> </Link>
-    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>   <UmTrabalhador imagem={workerImg3} nome="Shaddam Amargebraham" descricao="Engenheiro de blabla bla bla"/> </Link>
+    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>   <UmTrabalhador imgUrl={workerImg1} name="Mariana Morena Margarida" id={8}/> </Link>
+    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>   <UmTrabalhador imgUrl={workerImg2} name="André Mahatham" id={9}/> </Link>
+    <Link to="/show-workers/worker" style={{textDecoration:'none'}}>   <UmTrabalhador imgUrl={workerImg3} name="Shaddam Amargebraham" id={10}/> </Link>
 
     </>
   )
