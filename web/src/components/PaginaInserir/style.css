@@ -41,9 +41,12 @@ fieldset select{
   padding: 10px;
 }
 fieldset#fildTrabalhador select{
-  width: 40rem;
+  width: 42rem;
   color:#E8E9EB;
   background-color: rgb(3, 128, 128);
+}
+#projectFunc{
+  width: 42rem;
 }
 fieldset#fild1 select{
   margin-left: 2rem;
