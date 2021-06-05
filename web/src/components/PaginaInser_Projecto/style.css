@@ -7,6 +7,9 @@ form{
 form button{
   width: 42rem;
 }
+form p{
+  font-family: 'Roboto';
+}
 
 fieldset{
   display: flex;
