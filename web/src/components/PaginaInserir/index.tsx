@@ -1,7 +1,12 @@
-import React, { useState,ChangeEvent, FormEvent } from 'react'
+import React, { useState,ChangeEvent, FormEvent, useEffect } from 'react'
 import api from '../../services/api'
 import Dropzone from '../Dropzone'
 import './style.css'
+
+interface dadoProjecto{
+  id: number;
+  name: string;
+}
 
 export default function PaginaInserir(){
   getLastId()
@@ -16,8 +21,14 @@ export default function PaginaInserir(){
   const [departament,setDepartament] = useState('')
   const [qnt_delays,setQnt_delays] = useState(0)
   const [qnt_houres_worked,setQnt_houres_worked] = useState(0)
-     
-      
+  const [projectFunc, setProjectFunc] = useState('');
+
+  const [dataOfProject,setDataOfProject] = useState<dadoProjecto[]>([])
+  useEffect(()=>{
+     api.get('projects').then(Response=>{
+        setDataOfProject(Response.data)
+    })
+  },[])    
 
 
   function handleName(event: ChangeEvent<HTMLInputElement>) {
@@ -51,6 +62,9 @@ export default function PaginaInserir(){
   function handleWorkerHours(event: ChangeEvent<HTMLInputElement>) {
     setQnt_houres_worked(Number(event.target.value))
   }
+  function handleProjectFunc(event:ChangeEvent<HTMLInputElement>) {
+    setProjectFunc(event.target.value);
+  }
   const [seletedFile,setSelectedFile]=useState<File|any>()
   const [isVinculado,setIsVinculado] =useState(true)
 
@@ -76,7 +90,8 @@ export default function PaginaInserir(){
         fk_worker: lastId,
         project_data,
         tasks_performed,
-        task_value
+        task_value,
+        projectFunc
       }
       const dataNoRelatedWorker = {
         fk_worker: lastId,
@@ -86,7 +101,8 @@ export default function PaginaInserir(){
         responsibility,
         departament,
         qnt_delays,
-        qnt_houres_worked
+        qnt_houres_worked,
+        projectFunc
       }
       
       await api.post('workers',dataWorker).then(
@@ -149,10 +165,9 @@ export default function PaginaInserir(){
             <div>
             <select name="project_data" id="" onChange={handleProject_data}>
               <option value="">Selecione o projecto</option>
-              <option value="1">Projecto 1</option>
-              <option value="2">Projecto 2</option>
-              <option value="3">Projecto 3</option>
-              <option value="4">Projecto 4</option>
+              {dataOfProject.map(data=>(
+              <option value={data.id} key={data.id}>{data.name}</option>
+              ))}
             </select>
             <input type="number" name="tasks_performed" id="" placeholder="Tarefas completadas" onChange={handleTasks_performed}/>
             
@@ -160,16 +175,16 @@ export default function PaginaInserir(){
             <input type="range" name="task_value" id="" placeholder="Complacêcia" onChange={handleTask_value}/>
             <p style={{fontFamily:'Roboto',padding:'10px', color:'#353A40'}}>{task_value}%</p>
             </div>
+            <input type="text" name="prjectFunc" id="projectFunc" placeholder="Papel dentro do projecto" onChange={handleProjectFunc} maxLength={99}/>
             </div>
             
             :
             <div className="nRelacionado">
             <select name="" id="" onChange={handleProject_data}>
               <option value="">Selecione o projecto</option>
-              <option value="1">Projecto 1</option>
-              <option value="2">Projecto 2</option>
-              <option value="3">Projecto 3</option>
-              <option value="4">Projecto 4</option>
+              {dataOfProject.map(data=>(
+              <option value={data.id} key={data.id}>{data.name}</option>
+              ))}
             </select>
             <input type="number" name="" id="number" placeholder="Tarefas completadas" onChange={handleTasks_performed} />
             
@@ -179,7 +194,7 @@ export default function PaginaInserir(){
 
         
             </div>
-            <select name="" id="" style={{width:'19rem'}}onChange={handleDepartament} >
+            <select name="" id="" style={{width:'19rem',marginRight:'4rem'}}onChange={handleDepartament} >
               <option value="">Departamentos</option>
               <option value="RH">RH</option>
               <option value="Finanças">Finanças</option>
@@ -196,7 +211,7 @@ export default function PaginaInserir(){
               <input type="number" name="" id="" placeholder="Horas trabalhadas" max="24" onChange={handleWorkerHours}/>
               <input type="number" name="" id="" placeholder="Horas atrasadas" max="24" onChange={handleDelayHours}/>
             </div>
-            
+            <input type="text" name="prjectFunc" id="projectFunc" placeholder="Papel dentro do projecto" onChange={handleProjectFunc} maxLength={99}/>
             </div>
             
             }
