@@ -11,6 +11,7 @@ class relatedWorkerController{
        project_data,
        tasks_performed,
        task_value,
+       projectFunc
      } = request.body
 
    const dataRealtedWorker = {
@@ -18,6 +19,7 @@ class relatedWorkerController{
        project_data,
        tasks_performed,
        task_value,
+       projectFunc
    }
     await knex('related_workers').insert(dataRealtedWorker)
 
