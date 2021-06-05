@@ -66,6 +66,25 @@ class workerController{
     return response.json(workers)
    }
 
+   async showall(request:Request,response:Response){
+    const NoRelatedworkers = await knex('workers')
+    .join('no_related_workers', 'no_related_workers.fk_worker','=','workers.id')
+    .join('projects','no_related_workers.project_data','=','projects.id')
+    .select('workers.id','workers.name','workers.level','projects.name as projecto','no_related_workers.projectFunc','no_related_workers.tasks_performed','no_related_workers.task_value','no_related_workers.responsibility','no_related_workers.departament','no_related_workers.qnt_delays','no_related_workers.qnt_houres_worked')
+    
+    const RelatedWorkers = await knex('workers')
+    .join('related_workers', 'related_workers.fk_worker','=','workers.id')
+    .join('projects','related_workers.project_data','=','projects.id')
+    .select('workers.id','workers.name','workers.level','projects.name as projecto','related_workers.projectFunc','related_workers.tasks_performed','related_workers.task_value')
+
+    const data = [
+      ...RelatedWorkers,
+      ...NoRelatedworkers
+    ]
+    return response.json(data)
+
+   }
+
   async show(request:Request,response:Response){
 
     const { id } = request.params
@@ -89,34 +108,60 @@ class workerController{
     .join('workers', 'related_workers.fk_worker','=','workers.id')
     .where('workers.id',id)
     .join('projects','related_workers.project_data','=','projects.id')
-    .where('workers.id',id)
-    
-    
+    .where('workers.id',id).select('workers.id','workers.name','workers.level','workers.image','projects.name as project','related_workers.projectFunc','related_workers.tasks_performed','related_workers.task_value')
+  
+    const serializedRelatedWorkers  = relatedWorker.map(work => {
+      return {
+        id: work.id,
+        name: work.name,
+        level:work.level,
+        imgUrl: `http://localhost:3333/uploads/${work.image}`,
+        project: work.project,
+        projectFunc: work.projectFunc,
+        tasks_performed: work.tasks_performed,
+        task_value: work.task_value,
+      }
+    })
   
     const noRelatedWorker = await knex('no_related_workers')
     .join('workers', 'no_related_workers.fk_worker','=','workers.id')
     .where('workers.id',id)
     .join('projects','no_related_workers.project_data','=','projects.id')
-    .where('workers.id',id)
+    .where('workers.id',id).select('workers.id','workers.name','workers.level','workers.image','projects.name as project','no_related_workers.projectFunc','no_related_workers.tasks_performed','no_related_workers.task_value','no_related_workers.responsibility','no_related_workers.departament','no_related_workers.qnt_delays','no_related_workers.qnt_houres_worked')
     
 
-    
-    if(noRelatedWorker.length>0) return response.json({
-      Estado: 'Trabalhador Inserido',
-      ...noRelatedWorker
+    const serializedNoRelatedWorkers  = noRelatedWorker.map(work => {
+      return {
+        id: work.id,
+        name: work.name,
+        level:work.level,
+        imgUrl: `http://localhost:3333/uploads/${work.image}`,
+        project: work.project,
+        projectFunc: work.projectFunc,
+        tasks_performed: work.tasks_performed,
+        task_value: work.task_value,
+        responsibility: work.responsibility,
+        departament: work.departament,
+        qnt_delays: work.qnt_delays,
+        qnt_houres_worked: work.qnt_houres_worked
+      }
     })
+
+    
+    
+    if(noRelatedWorker.length>0) return response.json(
+      serializedNoRelatedWorkers
+    )
     
 
-    else if(relatedWorker.length>0) return response.json({
-      Estado: 'Trabalhador Inserido',
-      ...relatedWorker
-    })
+    else if(relatedWorker.length>0) return response.json(
+      serializedRelatedWorkers
+    )
 
     else{
-      return response.json({
-        Estado: 'Trabalhador não Inserido',
-        ...worker
-      })
+      return response.json([
+        worker]
+      )
     }
   }
 
