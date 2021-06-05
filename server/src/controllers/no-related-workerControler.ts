@@ -14,7 +14,8 @@ class noRelatedWorkerController{
       responsibility,
       departament,
       qnt_delays,
-      qnt_houres_worked
+      qnt_houres_worked,
+      projectFunc
     }= request.body
      
     const dataNoRelatedWorkers = {
@@ -25,7 +26,8 @@ class noRelatedWorkerController{
       responsibility,
       departament,
       qnt_delays,
-      qnt_houres_worked
+      qnt_houres_worked,
+      projectFunc
     }
     await knex('no_related_workers').insert(dataNoRelatedWorkers)
   
