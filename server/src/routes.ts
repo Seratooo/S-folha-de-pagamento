@@ -41,5 +41,8 @@ routes.post('/no-related-worker',noRelatedWork.create)
 routes.post('/projects',projects.create)
 routes.get('/projects',projects.getAllProjects)
 
+routes.put('/updateRelated/:id',relatedWork.update)
+routes.put('/updateNoRelated/:id',noRelatedWork.update)
+
 
 export default routes
