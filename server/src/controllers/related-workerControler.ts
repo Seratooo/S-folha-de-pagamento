@@ -25,6 +25,22 @@ class relatedWorkerController{
 
          return response.json(dataRealtedWorker)
    }
+
+   async update(request:Request,response:Response){
+    const id = request.params.id; 
+    
+    const {
+      tasks_performed,
+      task_value
+     } = request.body
+
+     const data = {
+      tasks_performed,
+      task_value
+     }
+     await knex('related_workers').update(data).where('fk_worker',id);
+     return response.json(data);
+   }
 }
 
 export default relatedWorkerController
