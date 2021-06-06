@@ -65,6 +65,55 @@ export default function PaginaTrabalhador() {
 
     await api.put(`updateRelated/${fk_worker}`,data)
   }
+
+  function handleSalrioNoRelated() {
+    let bonusLevel=0;
+    let bonusCargo=0;
+    const level = String(trabalhador.map(tb=>tb.level))
+    const responsabilidade = String(trabalhador.map(tb=>tb.responsibility))
+    
+    //Falta o if do projecto
+    if(level=="Profissional"){
+      bonusLevel=80;
+    }else if(level=="Tecnico"){
+      bonusLevel=60;
+    }else if(level=="Qualificado"){
+      bonusLevel=40;
+    }
+
+    if(responsabilidade=="Chef. Departamento"){
+      bonusCargo=120
+    }else{
+      bonusCargo=200
+    }
+
+    const horasDeTrablho = Number(trabalhador.map(tb=>tb.qnt_houres_worked))
+    const horasDeAtraso = Number(trabalhador.map(tb=>tb.qnt_delays))
+
+    const salario = horasDeTrablho*12.5 + bonusCargo + bonusLevel + horasDeAtraso*(-5);
+    
+    console.log(salario+"$");
+    
+  }
+
+  function handleSalarioRelated() {
+    let coeficiente=0;
+    const cumprimento = Number(trabalhador.map(tb=>tb.task_value))
+    const Tarefas = Number(trabalhador.map(tb=>tb.tasks_performed))
+
+    if(cumprimento>=95){
+      coeficiente=21.5
+    }else if(cumprimento>=80 && cumprimento<=95){
+      coeficiente=18.5
+    }else{
+      coeficiente=15
+    }
+
+    const result = Tarefas*(cumprimento/100)
+    const salario = result*coeficiente
+
+    console.log(salario)
+  }
   async function updateNoRelated() {
     const fk_worker = trabalhador.map(tb=>tb.fk_worker)
     const data = {
@@ -113,7 +162,7 @@ export default function PaginaTrabalhador() {
                 ' '
                 )}
 
-
+                 
               <fieldset>
 
               <input type="number" name="" id="number" placeholder="Adicionar Tarefas completadas" onChange={handleTakPerformed}/>
@@ -132,6 +181,12 @@ export default function PaginaTrabalhador() {
               <p style={{fontFamily:'Roboto',padding:'10px', color:'#353A40'}}>+{task_value}%</p>
               </div>
               </fieldset>
+              {trabalhador.map(
+                tb=>tb.responsibility!=null?
+                <button onClick={handleSalrioNoRelated}>Ver Salário</button>
+                :
+                <button onClick={handleSalarioRelated}>Ver Salário</button>
+                )}
             </div>
             
     </div>
