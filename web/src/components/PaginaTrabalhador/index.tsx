@@ -72,7 +72,7 @@ export default function PaginaTrabalhador() {
     const level = String(trabalhador.map(tb=>tb.level))
     const responsabilidade = String(trabalhador.map(tb=>tb.responsibility))
     
-    //Falta o if do projecto
+    //Falta o if do cumprimento projecto
     if(level=="Profissional"){
       bonusLevel=80;
     }else if(level=="Tecnico"){
@@ -90,7 +90,7 @@ export default function PaginaTrabalhador() {
     const horasDeTrablho = Number(trabalhador.map(tb=>tb.qnt_houres_worked))
     const horasDeAtraso = Number(trabalhador.map(tb=>tb.qnt_delays))
 
-    const salario = horasDeTrablho*12.5 + bonusCargo + bonusLevel + horasDeAtraso*(-5);
+    const salario = 25*horasDeTrablho*12.5 + bonusCargo + bonusLevel + horasDeAtraso*(-5);
     
     console.log(salario+"$");
     
@@ -112,7 +112,8 @@ export default function PaginaTrabalhador() {
     const result = Tarefas*(cumprimento/100)
     const salario = result*coeficiente
 
-    console.log(salario)
+    console.log(salario+"$");
+
   }
   async function updateNoRelated() {
     const fk_worker = trabalhador.map(tb=>tb.fk_worker)
@@ -170,8 +171,8 @@ export default function PaginaTrabalhador() {
               {trabalhador.map(
                 tb=>tb.responsibility!=null?
                 <>
-                <input type="number" name="" id="" placeholder="Horas trabalhadas" max="24" onChange={handleQntHoursWorked}/>
-                <input type="number" name="" id="" placeholder="Horas atrasadas" max="24" onChange={handleQntDelay}/>
+                <input type="number" name="" id="" placeholder="Horas trabalhadas por dia" max="24" onChange={handleQntHoursWorked}/>
+                <input type="number" name="" id="" placeholder="Nº de Atrasos" max="24" onChange={handleQntDelay}/>
                 </>
                 :
                 ''
