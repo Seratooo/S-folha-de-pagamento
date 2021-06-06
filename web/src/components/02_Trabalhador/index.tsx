@@ -22,7 +22,6 @@ export default function UmTrabalhador(props: dados){
   useEffect(()=>{
     api.get(`workers/${props.id}`).then(Response=>{
       setTrabalhador(Response.data)
-      console.log(Response.data)
     })
   },[])
 
