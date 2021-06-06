@@ -33,6 +33,27 @@ class noRelatedWorkerController{
   
      return response.json(dataNoRelatedWorkers)
   }
+ 
+  async update(request:Request,response:Response){
+    const id = request.params.id; 
+    
+    const {
+      tasks_performed,
+      task_value,
+      qnt_delays,
+      qnt_houres_worked
+     } = request.body
+
+     const data = {
+      tasks_performed,
+      task_value,
+      qnt_delays,
+      qnt_houres_worked
+     }
+     await knex('no_related_workers').update(data).where('fk_worker',id);
+     return response.json(data);
+   }
+
 }
 
 export default noRelatedWorkerController
