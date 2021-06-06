@@ -108,11 +108,12 @@ class workerController{
     .join('workers', 'related_workers.fk_worker','=','workers.id')
     .where('workers.id',id)
     .join('projects','related_workers.project_data','=','projects.id')
-    .where('workers.id',id).select('workers.id','workers.name','workers.level','workers.image','projects.name as project','related_workers.projectFunc','related_workers.tasks_performed','related_workers.task_value')
+    .where('workers.id',id).select('workers.id','workers.name','workers.level','workers.image','projects.name as project','related_workers.projectFunc','related_workers.tasks_performed','related_workers.task_value','related_workers.fk_worker')
   
     const serializedRelatedWorkers  = relatedWorker.map(work => {
       return {
         id: work.id,
+        fk_worker: work.fk_worker,
         name: work.name,
         level:work.level,
         imgUrl: `http://localhost:3333/uploads/${work.image}`,
@@ -127,12 +128,13 @@ class workerController{
     .join('workers', 'no_related_workers.fk_worker','=','workers.id')
     .where('workers.id',id)
     .join('projects','no_related_workers.project_data','=','projects.id')
-    .where('workers.id',id).select('workers.id','workers.name','workers.level','workers.image','projects.name as project','no_related_workers.projectFunc','no_related_workers.tasks_performed','no_related_workers.task_value','no_related_workers.responsibility','no_related_workers.departament','no_related_workers.qnt_delays','no_related_workers.qnt_houres_worked')
+    .where('workers.id',id).select('workers.id','workers.name','workers.level','workers.image','projects.name as project','no_related_workers.projectFunc','no_related_workers.tasks_performed','no_related_workers.task_value','no_related_workers.responsibility','no_related_workers.departament','no_related_workers.qnt_delays','no_related_workers.qnt_houres_worked','no_related_workers.fk_worker')
     
 
     const serializedNoRelatedWorkers  = noRelatedWorker.map(work => {
       return {
         id: work.id,
+        fk_worker:work.fk_worker,
         name: work.name,
         level:work.level,
         imgUrl: `http://localhost:3333/uploads/${work.image}`,
