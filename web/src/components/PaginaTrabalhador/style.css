@@ -20,7 +20,7 @@ div.PrincipalTrabalhador button{
     height: 4rem;
     border:none;
     border-radius: 8px;
-    font-family: 'Roboto',sans-serif;
+    font-family: 'Varela Round',sans-serif;
     font-size: 1.5rem;
     margin: 25px auto;
     background-color: #E5E93E;
@@ -56,12 +56,28 @@ div.contentImgTrabalhador img{
   margin: auto;
 }
 div.contentTextTrabalhador{
+  display: flex;
+  flex-direction: column;
+
+  row-gap: .5rem;
+
   box-shadow: 1px .8px 3px rgba(0, 0, 0, 0.3);
   text-align: left;
   background-color: #353a406e;
-  font-family: 'Roboto',sans-serif;
+  font-family: 'Varela Round',sans-serif;
   flex: 1;
   border-radius: 5px;
   color: #353A40;
   padding: 15px 0px 0px 15px;
+
+}
+fieldset#fild8 input, fieldset#fild8 select{
+  width: 13rem;
+  height: 2.5rem;
+  margin-bottom: 10px;
+  margin-left: 10px;
+}
+
+div.buttom button{
+  width: 10rem;
 }
