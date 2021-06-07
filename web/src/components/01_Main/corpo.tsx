@@ -18,7 +18,7 @@ export default function Corpo(props:dados){
   const [textAtualizar,setTextAtualizar] = useState('Actualizar dados')
   const [textListT,setTextListT] = useState('Trabalhadores')
   const [textListP,setTextListP] = useState('Projectos') 
-
+  const [textButtom,setTextButtom] = useState('Folha de Salário')
 
   
   function menuOnOrOff(){
@@ -27,9 +27,11 @@ export default function Corpo(props:dados){
    if(!signal){
     setTextTrabalhador('Inserir trabalhador'); setTextAtualizar('Actualizar dados'); 
     setTextListT('Trabalhadores'); setTextListP('Projectos');
+    setTextButtom('Folha de Salário')
   }else{
     setTextTrabalhador(''); setTextAtualizar('');
     setTextListT(''); setTextListP('');
+    setTextButtom('S')
   }
    
   }
@@ -51,7 +53,7 @@ export default function Corpo(props:dados){
             </div>
 
             <div className="boxButtom">
-                  <button>Folha de Salário</button>
+                  <button>{textButtom}</button>
             </div>
       </aside>
       
