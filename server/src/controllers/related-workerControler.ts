@@ -31,12 +31,14 @@ class relatedWorkerController{
     
     const {
       tasks_performed,
-      task_value
+      task_value,
+      project_data
      } = request.body
 
      const data = {
       tasks_performed,
-      task_value
+      task_value,
+      project_data
      }
      await knex('related_workers').update(data).where('fk_worker',id);
      return response.json(data);
