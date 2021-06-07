@@ -42,24 +42,27 @@ export default function PaginaProjecto() {
   }
 
   return(
+    <div className="conteudo">
     <form onSubmit={submit}>
-      <fieldset id="fild11">
+      <fieldset id="fild5">
         <input type="text" placeholder="Nome do projecto" onChange={handleName}/>
         <input type="text" placeholder="Cliente" onChange={handleClient}/>
       </fieldset>
 
-      <fieldset id="fild22">
+      <fieldset id="fild5">
         <input type="text" placeholder="Custo do projecto (Akz)" onChange={handleProjectCust}/>
       </fieldset>
-      <fieldset id="fild33">
+      <fieldset id="fild5">
         <input type="date" name="dataStart" id="dataStart" onChange={handleDataStart} />
         <input type="date" name="dataEnd" id="dataEnd" onChange={handleDateEnd} />
       </fieldset>
-      <fieldset id="fild44" style={{justifyContent:'left',alignItems:'center'}}>
-        <input type="range" name="Range" id="Range" onChange={handleCompletetionPercent} /><p>{completion_percentage}%</p> 
+      <fieldset id="Range">
+        <input type="range" name="Range" id="Range" onChange={handleCompletetionPercent} />
+        <p>{completion_percentage}%</p> 
       </fieldset>
       <button>Inserir Projecto</button>
     </form>
+    </div>
   )
 }
 
