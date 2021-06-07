@@ -27,8 +27,8 @@ export default function Projecto(props:dados) {
         <div className="title" style={{width:'20rem', height:'4rem'}}>
             <p key={props.nomeDoProjecto.id}>{props.nomeDoProjecto.name}</p>
         </div>
-        <div className="qntd" style={{width:'20rem', height:'7rem'}}>
-        <img src={Meusclientes} alt="trabalhadores recentes" style={{width:'6rem'}}/>
+        <div className="qntd" style={{width:'20rem', height:'8rem'}}>
+        <img src={Meusclientes} alt="trabalhadores recentes" style={{width:'7rem'}}/>
         </div>
         </div>
   )
