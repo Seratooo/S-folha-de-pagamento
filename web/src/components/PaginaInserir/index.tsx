@@ -77,7 +77,7 @@ export default function PaginaInserir(){
   }
 
   async function handleSubmit(event:FormEvent) {  
-    
+    getLastId()
     carregarIMG()
       const dataWorker = {
         image:`${lastId}${seletedFile.name}`,
@@ -104,15 +104,15 @@ export default function PaginaInserir(){
         qnt_houres_worked,
         projectFunc
       }
-      
+      console.log({dataWorker,dataRelatedWorker,isVinculado})
       await api.post('workers',dataWorker).then(
         isVinculado? await api.post('related-worker',dataRelatedWorker)
-        : await api.post('no-related-worker',dataNoRelatedWorker)
+       : await api.post('no-related-worker',dataNoRelatedWorker)
         )
    
   }
 
-  function dataWorker(event: ChangeEvent<HTMLSelectElement>){
+  function handleMod(event: ChangeEvent<HTMLSelectElement>){
     const value = event.target.value
     if(value==="vinculado"){
       setIsVinculado(true)
@@ -153,69 +153,81 @@ export default function PaginaInserir(){
           </fieldset>
 
           <fieldset id="fildTrabalhador">
-            <select name="" id="#selectWorker" onChange={dataWorker}>
+            <select name="" id="#selectWorker" onChange={handleMod}>
               <option value="vinculado">Trabalhador Vinculado</option>
               <option value="nVinculado">Trabalhador Não Vinculado</option>
             </select>
           </fieldset>
 
-          <fieldset id="fild2">
+          
             {
             isVinculado? 
-            <div>
+            <>
+            <fieldset id="fild1">
+            <input type="number" name="tasks_performed" id="" placeholder="Tarefas completadas" onChange={handleTasks_performed}/>
             <select name="project_data" id="" onChange={handleProject_data}>
               <option value="">Selecione o projecto</option>
               {dataOfProject.map(data=>(
               <option value={data.id} key={data.id}>{data.name}</option>
               ))}
             </select>
-            <input type="number" name="tasks_performed" id="" placeholder="Tarefas completadas" onChange={handleTasks_performed}/>
-            
-            <div className="Range">
+            </fieldset>
+
+            <fieldset id="Range">
             <input type="range" name="task_value" id="" placeholder="Complacêcia" onChange={handleTask_value}/>
             <p style={{fontFamily:'Roboto',padding:'10px', color:'#353A40'}}>{task_value}%</p>
-            </div>
+            </fieldset>
+          
+            <fieldset id="fild6">
             <input type="text" name="prjectFunc" id="projectFunc" placeholder="Papel dentro do projecto" onChange={handleProjectFunc} maxLength={99}/>
-            </div>
+            </fieldset>
+            </>
             
             :
-            <div className="nRelacionado">
+            <>
+            
+            <fieldset id="fild1">
+            <input type="number" name="" id="number" placeholder="Tarefas completadas" onChange={handleTasks_performed} />
             <select name="" id="" onChange={handleProject_data}>
               <option value="">Selecione o projecto</option>
               {dataOfProject.map(data=>(
               <option value={data.id} key={data.id}>{data.name}</option>
               ))}
             </select>
-            <input type="number" name="" id="number" placeholder="Tarefas completadas" onChange={handleTasks_performed} />
-            
-            <div className="Range">
+            </fieldset>
+                
+            <fieldset id="Range">
             <input type="range" name="" id="" placeholder="Complacêcia" onChange={handleTask_value}/>
-            <p style={{fontFamily:'Roboto',padding:'10px', color:'#353A40'}}>{task_value}%</p>
+            <p>{task_value}%</p>
+            </fieldset>
 
-        
-            </div>
-            <select name="" id="" style={{width:'19rem',marginRight:'4rem'}}onChange={handleDepartament} >
+            <fieldset id="fild3" >
+            <select name="" id="" onChange={handleDepartament} >
               <option value="">Departamentos</option>
               <option value="RH">RH</option>
               <option value="Finanças">Finanças</option>
               <option value="Tecnologia">Tecnologia</option>
             </select>
 
-            <select name="" id="" style={{width:'19rem',marginRight:'0px'}} onChange={handleResponsability}>
+            <select name="" id="" onChange={handleResponsability}>
               <option value="">Responsabilidade</option>
               <option value="Chef. Departamento">Chefe de Departamento</option>
               <option value="Chef. Empresa">Chefe da Empresa</option>
             </select>
-
-            <div className="Horas">
+            </fieldset>
+            
+            <fieldset id="fild5">
               <input type="number" name="" id="" placeholder="Horas trabalhadas" max="24" onChange={handleWorkerHours}/>
               <input type="number" name="" id="" placeholder="Horas atrasadas" max="24" onChange={handleDelayHours}/>
-            </div>
+            </fieldset>
+
+            <fieldset id="fild6">
             <input type="text" name="prjectFunc" id="projectFunc" placeholder="Papel dentro do projecto" onChange={handleProjectFunc} maxLength={99}/>
-            </div>
+            </fieldset>
             
+            </>
             }
-          </fieldset>
+          
           <button type="submit">Inserir Trabalhador</button>
        </form>
 
