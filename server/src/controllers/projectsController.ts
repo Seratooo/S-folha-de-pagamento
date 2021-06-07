@@ -34,6 +34,22 @@ class projectsController{
     return response.json(projects)
 
     }
-}
+
+    async update(request:Request,response:Response){
+      const id = request.params.id; 
+      
+      const {
+        completion_percentage
+       } = request.body
+  
+       const data = {
+        completion_percentage
+       }
+       await knex('projects').update(data).where('id',id);
+       return response.json(data);
+     }
+   
+
+  }
 
 export default projectsController
