@@ -9,11 +9,12 @@ div.contentProjecto{
   display: flex;
   flex-direction: column;
   align-items: center;
-  font-family: 'Roboto',sans-serif;
+  font-family: 'Varela Round',sans-serif;
   padding: 10px;
 }
 div.contentProjecto h1{
   color: #353A40;
+  font-size: 2rem;
 }
 div.Asides{
   border-radius: 8px;
@@ -40,6 +41,7 @@ aside.leftProject,aside.rightProjecto{
 }
 div.contentProjecto button{
   font-size: 1.1rem;
+  font-family: 'Varela Round';
   color: #353A40;
   width: 25rem;
   height: 3.5rem;
