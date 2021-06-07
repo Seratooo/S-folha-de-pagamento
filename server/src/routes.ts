@@ -21,7 +21,9 @@ routes.post('/image',multer(multerConfig).single("file"),(req,res)=>{
 
 routes.get('/workers', worker.getWorkers)
 routes.get('/workers/:id', worker.show)
-routes.get('/allworkers/', worker.showall)
+routes.get('/allRelatedworkers/', worker.showallRelated)
+routes.get('/allNoRelatedworkers/', worker.showallNoRelated)
+
 
 
 routes.get('/workers_related_by_project/:id', worker.showRelatedWorkers_withProject)
@@ -43,6 +45,8 @@ routes.get('/projects',projects.getAllProjects)
 
 routes.put('/updateRelated/:id',relatedWork.update)
 routes.put('/updateNoRelated/:id',noRelatedWork.update)
+routes.put('/updateProjects/:id',projects.update)
+
 
 
 export default routes

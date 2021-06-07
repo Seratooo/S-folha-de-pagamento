@@ -38,6 +38,7 @@ class noRelatedWorkerController{
     const id = request.params.id; 
     
     const {
+      project_data,
       tasks_performed,
       task_value,
       qnt_delays,
@@ -45,6 +46,7 @@ class noRelatedWorkerController{
      } = request.body
 
      const data = {
+      project_data,
       tasks_performed,
       task_value,
       qnt_delays,
