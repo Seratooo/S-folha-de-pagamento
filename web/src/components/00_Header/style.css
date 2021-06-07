@@ -1,7 +1,7 @@
 header{
   background-color: #353A40;
   padding: 8px;
-  border-bottom: 1px solid #e8e9eba4;
+  border-bottom: 2px solid #e8e9eba4;
 }
 
 header div.elements{
@@ -18,32 +18,45 @@ div.content,div.item,div.btnSearchBox{
 }
 div.item{
   color: #E8E9EB;
-  font-family: 'Roboto';
   margin: 0px 10px 0px 10px;
-  font-size: 0.8rem;
   cursor: pointer;
+}
+div.item p{
+  font-family: 'Varela Round';
+  font-weight:400;
+  font-size:.9rem;
 }
 div.btnSearchBox{
   margin-left: 15px;
+  
 }
 div.btnSearchBox input{
+  font-family: 'Varela Round';
+  font-weight:400;
+  font-size:.9rem;
+
   width: 10rem;
-  height: 1.7rem;
+  height: 2rem;
   padding: 0.5rem;
   border: none;
   border-radius: 3px;
   text-align: center;
   color: #353A40;
+  background-color: #fff;
 }
 div.btnSearchBox button{
+  font-family: 'Varela Round';
+  font-weight:400;
+  font-size:.9rem;
+
   background-color: #E5E93E;
   color: #353A40;
   border: none;
-  width: 8rem;
-  height: 1.7rem;
+  width: 9rem;
+  height: 2rem;
   margin-left: 8px;
   border-radius: 3px;
-  box-shadow: 1px .8px 3px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px .8px 3px rgba(0, 0, 0, 0.4);
   cursor: pointer;
   transition: .6s;
 }
