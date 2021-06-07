@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { ChangeEvent, useEffect, useState } from 'react'
 import './style.css'
 import {FiArrowLeft} from 'react-icons/fi'
 import {Link} from 'react-router-dom'
@@ -26,9 +26,7 @@ interface relatedWorkData{
 
 export default function PaginaProjecto(){
   const [relatedWorkers,setRelatedWorkers] = useState<relatedWorkData[]>([])
-  
   const [norelatedWorkers,setNoRelatedWorkers] = useState<relatedWorkData[]>([])
-  
   useEffect(()=>{
     api.get(`workers_related_by_project/${data.nomeDoProjecto.id}`).then(Response=>{
       setRelatedWorkers(Response.data)
@@ -40,7 +38,18 @@ export default function PaginaProjecto(){
       setNoRelatedWorkers(Response.data)
     })
   },[])
-
+  const [completion_percentage,setCompletion_percentage] = useState(data.nomeDoProjecto.completion_percentage)  
+  function handleCompletetion(event:ChangeEvent<HTMLInputElement>) {
+    setCompletion_percentage(Number(event.target.value))
+  }
+  async function handleUpdateProject() {
+    const dados = {
+      completion_percentage
+    }
+    const id = data.nomeDoProjecto.id
+    await api.put(`updateProjects/${id}`,dados)
+    
+  }
     return(
       <div className="principalProjecto">
          <Link to="/show-projects">
@@ -58,7 +67,10 @@ export default function PaginaProjecto(){
         <p>Custo: {data.nomeDoProjecto.project_cost}</p>
         <p>Data de Início:{data.nomeDoProjecto.date_start}</p>
         <p>Data de Término: {data.nomeDoProjecto.date_end}</p>
-        <p><strong>Estado: {data.nomeDoProjecto.completion_percentage}%</strong></p>
+        <p><strong>Estado: {completion_percentage}%</strong></p>
+        <fieldset>
+        <input type="range" name="task_value" id="" placeholder="Complacêcia" value={completion_percentage} onChange={handleCompletetion}/>
+        </fieldset>
       </aside>
       <aside className="rightProjecto">
         <p><strong>Trabalhadores Relacionados</strong></p>
@@ -71,7 +83,7 @@ export default function PaginaProjecto(){
         ) )}
       </aside>
       </div>
-      <button>Atualizar dados do projecto</button>
+      <button onClick={handleUpdateProject}>Atualizar dados do projecto</button>
       </div>
       </div>
     )
