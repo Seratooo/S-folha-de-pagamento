@@ -20,24 +20,24 @@ export default function Header (){
 
         <div className="content">
 
-            <div className="item">
+        <Link to="/show-workers/related" style={{color:'#E8E9EB',textDecoration:'none'}}><div className="item">
               <img src={tv} alt="icon" />
-              <p>Trabalhadores Vinculados</p>
-            </div>
+                <p>Trabalhadores Vinculados</p> 
+              </div></Link>
             
-            <div className="item">
+            <Link to="/show-workers/norelated" style={{color:'#E8E9EB',textDecoration:'none'}}>   <div className="item">
               <img src={tnv} alt="icon" />
-              <p>Trabalhadores Não Vinculados</p>
-            </div>
+                <p>Trabalhadores Não Vinculados</p>
+            </div></Link>
             
-            <div className="item">
+            <Link to="/show-projects" style={{color:'#E8E9EB',textDecoration:'none'}}> <div className="item">
               <img src={projectos} alt="icon" />
               <p>Projectos</p>
-            </div>
+            </div></Link>
 
-            <div className="btnSearchBox">
+               <div className="btnSearchBox">
                 <input type="text" placeholder="Pesquisar"/>
-           <Link to="/add-project"><button>Adicionar Projecto</button></Link> 
+                <Link to="/add-project" style={{color:'#E8E9EB',textDecoration:'none'}}>   <button>Adicionar Projecto</button></Link> 
             </div>
         </div>
        </div> 
