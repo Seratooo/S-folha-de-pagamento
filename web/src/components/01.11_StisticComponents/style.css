@@ -24,8 +24,10 @@ div.title{
   width: 18rem;
   height: 3rem;
   border-bottom: 2px solid #353a407c;
+  font-family: 'Varela Round';
 }
 div.qntd{
+  font-family: 'Varela Round';
   display: flex;
   justify-content: center;
   align-items: center;
