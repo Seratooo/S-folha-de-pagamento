@@ -9,6 +9,9 @@ import ListarTrabalhadores from './Pages/ListarTrabalhadores';
 import Trabalhador from './Pages/Trabalhador';
 import Projecto from './Pages/Projecto'
 import AddProjecto from './Pages/AddProjecto'
+import TrabalhadorNR from './Pages/TrabalhadorNRelacionado'
+import TrabalhadorR from './Pages/TrabalhadorRelacionado'
+
 ReactDOM.render(
   <BrowserRouter>
   <Switch>
@@ -20,6 +23,9 @@ ReactDOM.render(
      <Route exact path='/show-workers/worker' component={Trabalhador} />
      <Route exact path='/show-workers/project' component={Projecto} />
      <Route exact path='/add-project' component={AddProjecto} />
+     <Route exact path='/show-workers/related' component={TrabalhadorR} />
+     <Route exact path='/show-workers/norelated' component={TrabalhadorNR} />
+     
 
   </Switch>
 </BrowserRouter>,
