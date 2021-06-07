@@ -19,7 +19,7 @@ fieldset{
   padding:10px 0px 10px 0px;
 }
 fieldset input{
-  width: 20rem;
+  width: 23rem;
   height: 4rem;
   border: none;
   background-color: #E8E9EB;
@@ -41,47 +41,46 @@ fieldset select{
   padding: 10px;
 }
 fieldset#fildTrabalhador select{
-  width: 42rem;
+  width: 40rem;
   color:#E8E9EB;
   background-color: rgb(3, 128, 128);
 }
-#projectFunc{
-  width: 42rem;
-}
-fieldset#fild1 select{
-  margin-left: 2rem;
-}
-fieldset#fild1 input{
-  width: 23rem;
-}
-fieldset#fild2 select{
-margin-right: 2rem;
-}
-fieldset#fild2 div.nRelacionado input#number{
-  width: 23rem;
-}
-fieldset#fild2 div.Range{
+fieldset#fild1{
   display: flex;
-  align-items: center;
-  margin: 20px 0px 20px 0px;
+  justify-content: space-between;
 }
-fieldset#fild2 div.Range select{
-  margin-left: 2rem;
-  margin-right: 0;
+fieldset#fild3{
+  display: flex;
+  width: 40rem;
+  justify-content: space-between;
 }
-fieldset#fild2 div.nRelacionado div.Horas input{
+fieldset#fild3 select{
   width: 19rem;
 }
-fieldset#fild2 div.nRelacionado div.Horas{
+fieldset#fild5{
   display: flex;
-  margin: 25px 0px;
-  justify-content: space-between; 
-} 
+  justify-content: space-between;
+}
+fieldset#fild5 input{
+  width: 19rem;
+}
+fieldset#Range{
+  display: flex;
+  align-items: center;
+}
+fieldset#Range p{
+  color: #353A40;
+  padding: 10px;
+}
+fieldset#fild6 input{
+  width: 40rem;
+}
 
 form button{
   width: 40rem;
   height: 4rem;
   font-size: 1.1rem;
+  font-family: 'Varela Round';
   border: none;
   background-color: #E5E93E;
   color: #353A40;
@@ -94,4 +93,4 @@ form button{
 form button:hover{
   color: #E8E9EB;
   background-color: rgb(3, 128, 128);
-}
+} 
