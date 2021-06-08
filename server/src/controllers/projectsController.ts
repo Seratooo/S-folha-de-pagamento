@@ -27,7 +27,7 @@ class projectsController{
 
 }
    async getAllProjects(request:Request,response:Response){
-     const projects = await knex('projects').select('*')
+     const projects = await knex('projects').select('*').orderBy('completion_percentage','asc')
      
      if(projects.length===0) return response.status(400).json({Message: "Sem Projectos de momento"})
 
