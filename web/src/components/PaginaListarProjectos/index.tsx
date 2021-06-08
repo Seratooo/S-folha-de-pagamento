@@ -19,7 +19,8 @@ export default function PaginaListarProjectos() {
   api.get('projects').then(Response=>{
         setProjectos(Response.data)
   })
-},[])
+})
+
   return(
     <>
   {projectos.map((projecto) => (
@@ -27,4 +28,5 @@ export default function PaginaListarProjectos() {
   ) )}
   </>
   )
+  
 }
