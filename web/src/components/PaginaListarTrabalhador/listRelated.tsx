@@ -16,7 +16,6 @@ const [trabalhadores,setTrabalhadores]=useState<dadosTrabalhador[]>([])
         setTrabalhadores(Response.data)
     })
   })
-  
   return(
     <>
     {trabalhadores.map(trabalhador=>(
