@@ -15,7 +15,8 @@ const [trabalhadores,setTrabalhadores]=useState<dadosTrabalhador[]>([])
     api.get('allRelatedworkers').then(Response=>{
         setTrabalhadores(Response.data)
     })
-  },[])
+  })
+  
   return(
     <>
     {trabalhadores.map(trabalhador=>(
