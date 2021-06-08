@@ -2,6 +2,7 @@ import React, { useState,ChangeEvent, FormEvent, useEffect } from 'react'
 import api from '../../services/api'
 import Dropzone from '../Dropzone'
 import './style.css'
+import accaoRealizada from '../../assets/accaoRealizada.svg'
 
 interface dadoProjecto{
   id: number;
@@ -65,6 +66,11 @@ export default function PaginaInserir(){
   function handleProjectFunc(event:ChangeEvent<HTMLInputElement>) {
     setProjectFunc(event.target.value);
   }
+  function handleSucess() {
+    document.querySelector('.MessageBackground')?.classList.toggle('off')
+    window.location.reload() 
+  }
+
   const [seletedFile,setSelectedFile]=useState<File|any>()
   const [isVinculado,setIsVinculado] =useState(true)
 
@@ -77,8 +83,11 @@ export default function PaginaInserir(){
   }
 
   async function handleSubmit(event:FormEvent) {  
-    getLastId()
-    carregarIMG()
+     getLastId()
+     carregarIMG()
+     
+    event.preventDefault()     
+
       const dataWorker = {
         image:`${lastId}${seletedFile.name}`,
         name,
@@ -104,13 +113,15 @@ export default function PaginaInserir(){
         qnt_houres_worked,
         projectFunc
       }
-      console.log({dataWorker,dataRelatedWorker,isVinculado})
+      
+    console.log({dataWorker,dataRelatedWorker,isVinculado})
       await api.post('workers',dataWorker).then(
         isVinculado? await api.post('related-worker',dataRelatedWorker)
        : await api.post('no-related-worker',dataNoRelatedWorker)
         )
-   
-  }
+     document.querySelector('.MessageBackground')?.classList.toggle('off')  
+
+    }
 
   function handleMod(event: ChangeEvent<HTMLSelectElement>){
     const value = event.target.value
@@ -128,12 +139,12 @@ export default function PaginaInserir(){
   }
 
   return(
+    <>
     <div className="conteudo">
         <div>
             <Dropzone onFileUploaded={setSelectedFile}/>
-        </div>
-
-        <form onSubmit={handleSubmit}>
+        </div> 
+        <form onSubmit={handleSubmit} id="formulario">
           <fieldset id="fild1">
             <input type="text" name="name" placeholder="Nome Completo" onChange={handleName} />
             <select name="" id="">
@@ -228,9 +239,24 @@ export default function PaginaInserir(){
             </>
             }
           
-          <button type="submit">Inserir Trabalhador</button>
+          <button type="submit" onClick={handleSubmit}>Inserir Trabalhador</button>
        </form>
-
+         
     </div>
+
+    <div className="MessageBackground off" onClick={handleSucess}>
+            <div className="ShowMessage">
+              <div className="MessageImage">
+                <img src={accaoRealizada} alt="Imagem de conclusão" />
+              </div>
+              <div className="MessageConteudo">
+                <h2>Concluído</h2>
+                <p>Este usuário foi inserido com sucesso!!!</p>
+                <button>OK</button>
+              </div>
+            </div>
+        </div>
+    
+    </>
   )
 }
