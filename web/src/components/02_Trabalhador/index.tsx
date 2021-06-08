@@ -19,11 +19,12 @@ export default function UmTrabalhador(props: dados){
   }
 
   const [trabalhador,setTrabalhador]=useState<workerData[]>([]);
+  const id = props.id;
   useEffect(()=>{
-    api.get(`workers/${props.id}`).then(Response=>{
+    api.get(`workers/${id}`).then(Response=>{
       setTrabalhador(Response.data)
     })
-  },[])
+  })
 
   return (
     <div className="contentMain" onClick={clickiNoTrabalhador}>
