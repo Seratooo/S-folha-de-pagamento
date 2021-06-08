@@ -94,3 +94,52 @@ form button:hover{
   color: #E8E9EB;
   background-color: rgb(3, 128, 128);
 } 
+
+
+.MessageBackground{
+  background-color: rgba(0, 0, 0, 0.9);
+  position: absolute;
+  margin-top: -1.6rem;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  opacity: 100%;
+  justify-content: center;
+  align-items: center;
+}
+.MessageBackground.off{
+  display: none;
+}
+
+.ShowMessage{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.MessageConteudo{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .3rem;
+
+  color: #E8E9EB;
+  font-family: 'Varela Round';
+
+}
+.MessageConteudo button{
+  margin-top: 10px;
+  width: 5rem;
+  height: 1.8rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  background-color: #E8E9EB;
+  color: #353A40;
+  transition: .5s;
+}
+.MessageConteudo button:hover{
+  color: #E8E9EB;
+  background-color: rgb(3, 128, 128);
+}
