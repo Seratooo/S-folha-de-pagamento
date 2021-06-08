@@ -3,6 +3,8 @@ import './style.css'
 import {FiArrowLeft} from 'react-icons/fi'
 import {Link} from 'react-router-dom'
 import api from '../../services/api';
+import accaoRealizada from '../../assets/accaoRealizada.svg'
+import salario from '../../assets/salarioImg.svg'
 
 interface dados{
   id: number;
@@ -17,6 +19,7 @@ interface workerData{
   fk_worker:number;
   level: string;
   project: string;
+  fk_projecto: number;
   projectFunc: string;
   tasks_performed: number;
   task_value: number;
@@ -29,10 +32,13 @@ interface workerData{
   completion_percentage:number;
   isNoRelated: boolean
 }
-let data:dados;
+
+
 
 export function dadosTrabalhador(dado:dados) {
-  data  = dado;
+  localStorage.setItem("imgUrl",dado.imgUrl)
+  localStorage.setItem("id",""+dado.id)
+  localStorage.setItem("name",dado.name)
 }
 
 export default function PaginaTrabalhador() {
@@ -43,11 +49,11 @@ export default function PaginaTrabalhador() {
   const [qnt_houres_worked,setQnt_houres_worked]= useState<number>(0)
   const [dataOfProject,setDataOfProject] = useState<dadoProjecto[]>([])
   const [project_data,setProject_data] = useState(0)
-
   const [trabalhador,setTrabalhador]=useState<workerData[]>([]);
- 
+  const [salarioT,setSalarioT] = useState('')
+
   useEffect(()=>{
-    api.get(`workers/${data.id}`).then(Response=>{
+    api.get(`workers/${Number(localStorage.getItem("id"))}`).then(Response=>{
       setTrabalhador(Response.data)
     })
   },[])
@@ -74,15 +80,25 @@ export default function PaginaTrabalhador() {
   function handleProject_data(event:ChangeEvent<HTMLSelectElement>) {
     setProject_data(Number(event.target.value))
   }
+  function handleSucess() {
+    document.querySelector('.MessageBackground')?.classList.toggle('off')
+    window.location.reload() 
+  }
+
+  function handleShowSalario() {
+    document.querySelector('.MessageSalario')?.classList.toggle('off')
+  }
+
    async function updateRelated() {
      const fk_worker = trabalhador.map(tb=>tb.fk_worker)
      const data = {
        tasks_performed:trabalhador.map(tb=>tb.tasks_performed + Number(tasks_performed)),
        task_value: trabalhador.map(tb=>task_value!==0?task_value:tb.task_value),
-       project_data
+       project_data: project_data!==0? project_data: trabalhador.map(tb=>tb.fk_projecto)
      }
 
      await api.put(`updateRelated/${fk_worker}`,data)
+     document.querySelector('.MessageBackground')?.classList.toggle('off')
    }
 
    function handleSalrioNoRelated() {
@@ -113,8 +129,8 @@ export default function PaginaTrabalhador() {
 
      const salario = 25*horasDeTrablho*12.5 + bonusCargo + bonusLevel + horasDeAtraso*(-5);
     
-     console.log(salario+"$");
-    
+     setSalarioT(salario+"$")
+     handleShowSalario()
    }
 
    function handleSalarioRelated() {
@@ -146,23 +162,26 @@ export default function PaginaTrabalhador() {
      const result = Tarefas*(cumprimento/100)
      const salario = result*coeficiente + bonusLevel
 
-     console.log(salario+"$");
-
+     
+     setSalarioT(salario+"$")
+     handleShowSalario()
+     
    }
    async function updateNoRelated() {
      const fk_worker = trabalhador.map(tb=>tb.fk_worker)
      const data = {
-       project_data,
+       project_data: project_data!==0? project_data: trabalhador.map(tb=>tb.fk_projecto),
        tasks_performed:trabalhador.map(tb=>tb.tasks_performed + Number(tasks_performed)),
        task_value: trabalhador.map(tb=>task_value!==0?task_value:tb.task_value),
        qnt_delays:trabalhador.map(tb=> Number(tb.qnt_delays) + qnt_delays),
        qnt_houres_worked: trabalhador.map(tb=> Number(tb.qnt_houres_worked) + qnt_houres_worked)
      }
-    await api.put(`updateNoRelated/${fk_worker}`,data)
-
+    await api.put(`updateNoRelated/${fk_worker}`,data)   
+    document.querySelector('.MessageBackground')?.classList.toggle('off')
    }
   return(
-  
+    <>
+
     <div className="PrincipalTrabalhador">
   <Link to="/show-workers"><div className="voltar">
         <FiArrowLeft style={{width:'35px'}}/> voltar
@@ -170,7 +189,7 @@ export default function PaginaTrabalhador() {
 
     <div className="contentTrabalhador">
             <div className="contentImgTrabalhador">
-              <img src={data.imgUrl} alt="Imagem do trabalhador"/>
+              <img src={String(localStorage.getItem("imgUrl"))} alt="Imagem do trabalhador"/>
             </div>
             <div className="contentTextTrabalhador">
             {trabalhador.map(
@@ -202,7 +221,7 @@ export default function PaginaTrabalhador() {
                  
               <fieldset id="fild8">
 
-              <input type="number" name="" id="number" placeholder="Adicionar Tarefas completadas" onChange={handleTakPerformed}/>
+              <input type="number" name="" id="number" placeholder="Add Tarefas completadas" onChange={handleTakPerformed}/>
     
               {trabalhador.map(
                 tb=>tb.isNoRelated?
@@ -254,5 +273,32 @@ export default function PaginaTrabalhador() {
                 )}
     </div>
 
+    <div className="MessageBackground off" onClick={handleSucess}>
+            <div className="ShowMessage">
+              <div className="MessageImage">
+                <img src={accaoRealizada} alt="Imagem de conclusão" />
+              </div>
+              <div className="MessageConteudo">
+                <h2>Concluído</h2>
+                <p>Este usuário foi atualizado com sucesso!!!</p>
+                <button>OK</button>
+              </div>
+            </div>
+        </div>
+
+        <div className="MessageSalario off" onClick={handleShowSalario}>
+            <div className="ShowMessage">
+              <div className="MessageImage">
+                <img src={salario} alt="Imagem de conclusão" />
+              </div>
+              <div className="MessageConteudo">
+                <h2>Salário do Trabalhador</h2>
+                <p><h1>{salarioT}</h1></p>
+                <button>OK</button>
+              </div>
+            </div>
+        </div>
+
+    </>
   )
 }
