@@ -1,6 +1,8 @@
-import React, { ChangeEvent, useState } from 'react'
+import React, { ChangeEvent, FormEvent, useState } from 'react'
 import api from '../../services/api';
+import accaoRealizada from '../../assets/accaoRealizada.svg'
 import './style.css'
+
 export default function PaginaProjecto() {
 
   const [completion_percentage,setCompletion_percentage] = useState('50');
@@ -27,8 +29,14 @@ export default function PaginaProjecto() {
   function handleDateEnd(event:ChangeEvent<HTMLInputElement>) {
     setDate_end(event.target.value)
   }
+  function handleSucess() {
+    document.querySelector('.MessageBackground')?.classList.toggle('off')
+    window.location.reload() 
+  }
 
-  function submit() {
+  function submit(event:FormEvent) {
+    event.preventDefault()
+
     const data = {
       name,
       client,
@@ -39,9 +47,12 @@ export default function PaginaProjecto() {
     }
     
     api.post('projects',data)
+    document.querySelector('.MessageBackground')?.classList.toggle('off')
   }
 
   return(
+    <>
+
     <div className="conteudo">
     <form onSubmit={submit}>
       <fieldset id="fild5">
@@ -63,12 +74,20 @@ export default function PaginaProjecto() {
       <button>Inserir Projecto</button>
     </form>
     </div>
+
+    <div className="MessageBackground off" onClick={handleSucess}>
+            <div className="ShowMessage">
+              <div className="MessageImage">
+                <img src={accaoRealizada} alt="Imagem de conclusão" />
+              </div>
+              <div className="MessageConteudo">
+                <h2>Concluído</h2>
+                <p>Este projecto foi inserido com sucesso!!!</p>
+                <button>OK</button>
+              </div>
+            </div>
+        </div>
+
+    </>
   )
 }
-
-      // name,
-      // client,
-      // project_cost,
-      // date_start,
-      // date_end,
-      // completion_percentage
