@@ -14,7 +14,7 @@ export default function ListNoRelated() {
     api.get('allNoRelatedworkers').then(Response=>{
         setTrabalhadores(Response.data)
     })
-  },[])
+  })
   return(
     <>
     {trabalhadores.map(trabalhador=>(
