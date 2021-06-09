@@ -261,19 +261,19 @@ export default function PaginaTrabalhador() {
               </fieldset>
               {trabalhador.map(
                 tb=>tb.isNoRelated?
-                <button onClick={handleSalrioNoRelated} id="salario" style={{width:'13rem',height:'2.5rem',fontSize:'1.1rem',marginLeft:'10px',marginTop:'-1rem',background:'#353A40',color:'#c4c4c4'}}>Ver Salário</button>
+                <button onClick={handleSalrioNoRelated} id="salario" key={tb.fk_worker} style={{width:'13rem',height:'2.5rem',fontSize:'1.1rem',marginLeft:'10px',marginTop:'-1rem',background:'#353A40',color:'#c4c4c4'}}>Ver Salário</button>
                 :
-                <button onClick={handleSalarioRelated} id="salario" style={{width:'13rem',height:'2.5rem',fontSize:'1.1rem',marginLeft:'10px',marginTop:'-1rem',background:'#353A40',color:'#c4c4c4'}}>Ver Salário</button>
+                <button onClick={handleSalarioRelated} id="salario" key={tb.fk_worker} style={{width:'13rem',height:'2.5rem',fontSize:'1.1rem',marginLeft:'10px',marginTop:'-1rem',background:'#353A40',color:'#c4c4c4'}}>Ver Salário</button>
                 )}
             </div>
             
     </div>
     {trabalhador.map(
                 tb=>tb.isNoRelated?
-                <button onClick={updateNoRelated}>Atualizar Dados</button>
+                <button onClick={updateNoRelated} key={tb.fk_worker} >Atualizar Dados</button>
                 
                 :
-                <button onClick={updateRelated}>Atualizar Dados</button>
+                <button onClick={updateRelated} key={tb.fk_worker} >Atualizar Dados</button>
                 )}
     </div>
 
