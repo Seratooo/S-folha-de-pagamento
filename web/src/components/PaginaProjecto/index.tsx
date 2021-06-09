@@ -92,11 +92,11 @@ export default function PaginaProjecto(){
       <aside className="rightProjecto">
         <p><strong>Trabalhadores Relacionados</strong></p>
         {relatedWorkers.map(workers=>(
-          <p>{workers.name}</p>
+          <p key={workers.name}>{workers.name}</p>
         ) )}
         <p><strong>Trabalhadores Não Relacionados</strong></p>
         {norelatedWorkers.map(workers=>(
-          <p>{workers.name}</p>
+          <p key={workers.name}>{workers.name}</p>
         ) )}
       </aside>
       </div>
