@@ -5,14 +5,14 @@ import './style.css'
 
 export default function PaginaProjecto() {
 
-  const [completion_percentage,setCompletion_percentage] = useState('50');
+  const [completion_percentage,setCompletion_percentage] = useState(0);
   const [name,setName] = useState('');
   const [client,setClient] = useState('');
   const [project_cost,setProject_cost] = useState('');
   const [date_start,setDate_start] = useState('');
   const [date_end,setDate_end]= useState('');
   function handleCompletetionPercent(event: ChangeEvent<HTMLInputElement>) {
-    setCompletion_percentage(event.target.value);
+    setCompletion_percentage(Number(event.target.value));
   }
   function handleName(event: ChangeEvent<HTMLInputElement>) {
     setName(event.target.value)
@@ -45,9 +45,26 @@ export default function PaginaProjecto() {
       date_end,
       completion_percentage
     }
-    
-    api.post('projects',data)
-    document.querySelector('.MessageBackground')?.classList.toggle('off')
+    if(name===''){
+      alert('Atenção!!! Preencha o campo NOME') ;
+    }
+    else if(client===''){
+      alert('Atenção!!! Preencha o campo CLIENTE')
+    }
+    else if(project_cost===''){
+      alert('Atenção!!! Digite o CUSTO DO PROJECTO')
+    }
+    else if(date_start===''){
+      alert('Atenção!!! Selecione a DATA DE INÍCIO')
+    }
+    else if(date_end===''){
+      alert('Atenção!!! Selecione a DATA DE FIM')
+    }
+    else{
+      api.post('projects',data)
+      document.querySelector('.MessageBackground')?.classList.toggle('off')
+    }
+   
   }
 
   return(
@@ -68,7 +85,7 @@ export default function PaginaProjecto() {
         <input type="date" name="dataEnd" id="dataEnd" onChange={handleDateEnd} />
       </fieldset>
       <fieldset id="Range">
-        <input type="range" name="Range" id="Range" onChange={handleCompletetionPercent} />
+        <input type="range" name="Range" id="Range" onChange={handleCompletetionPercent} value={completion_percentage} />
         <p>{completion_percentage}%</p> 
       </fieldset>
       <button>Inserir Projecto</button>
