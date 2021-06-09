@@ -21,35 +21,35 @@ export default function PaginaInicial(){
     api.get('countRelated').then(Response=>{
       setQntRelated(Response.data)
     })
-  })
+  },[])
 
   const [qntNoRelated,setNoQntRelated] = useState<worker[]>([{qntd:0}]);
   useEffect(()=>{
     api.get('countNoRelated').then(Response=>{
       setNoQntRelated(Response.data)
     })
-  })
+  },[])
 
   const [qntProjects,setProjects] = useState<projects[]>([{qntdProjectos:0}]);
   useEffect(()=>{
     api.get('countprojects').then(Response=>{
       setProjects(Response.data)
     })
-  })
+  },[])
 
   const [media,setMedia] = useState<media[]>([{media:0}]);
   useEffect(()=>{
     api.get('mediaprojects').then(Response=>{
       setMedia(Response.data)
     })
-  })
+  },[])
 
   const [best,setBest] = useState<best[]>([{name:''}]);
   useEffect(()=>{
     api.get('bestworker').then(Response=>{
       setBest(Response.data)
     })
-  })
+  },[])
   return(
     <>
               <Start title="Trabalhadores Vinculados" qnt={""+qntRelated.map(qR=>qR.qntd)}/>
