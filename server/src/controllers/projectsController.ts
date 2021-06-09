@@ -3,7 +3,6 @@ import knex from '../database/connection'
 
 class projectsController{
   async create (request:Request,response:Response){
-
     const {
       name,
       client,
@@ -24,18 +23,18 @@ class projectsController{
     await knex('projects').insert(dataProjects)
 
     return response.json(dataProjects)
-
-}
-   async getAllProjects(request:Request,response:Response){
+  }
+   
+  async getAllProjects(request:Request,response:Response){
      const projects = await knex('projects').select('*').orderBy('completion_percentage','asc')
      
      if(projects.length===0) return response.status(400).json({Message: "Sem Projectos de momento"})
 
     return response.json(projects)
 
-    }
+  }
 
-    async update(request:Request,response:Response){
+  async update(request:Request,response:Response){
       const id = request.params.id; 
       
       const {
@@ -47,9 +46,26 @@ class projectsController{
        }
        await knex('projects').update(data).where('id',id);
        return response.json(data);
-     }
-   
-
   }
+
+  async countAllProjects(request:Request,response:Response){
+      const projects = await knex('projects').count('* as qntdProjectos')
+  
+      if(projects.length===0) return response.status(400).json({Message: "Sem Projectos de momento"})
+ 
+     return response.json(projects)
+ 
+  }
+
+  async ProjectsCompleted(request:Request,response:Response){
+      const projects = await knex('projects').avgDistinct('completion_percentage as media')
+  
+      if(projects.length===0) return response.status(400).json({Message: "Sem Projectos de momento"})
+ 
+     return response.json(projects)
+ 
+  }
+   
+}
 
 export default projectsController
