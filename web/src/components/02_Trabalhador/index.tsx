@@ -20,18 +20,19 @@ export default function UmTrabalhador(props: dados){
 
   const [trabalhador,setTrabalhador]=useState<workerData[]>([]);
   const id = props.id;
+  
   useEffect(()=>{
     api.get(`workers/${id}`).then(Response=>{
       setTrabalhador(Response.data)
     })
-  })
+  },[id])
 
   return (
-    <div className="contentMain" onClick={clickiNoTrabalhador}>
-        <div className="contentImg">
+    <div className="contentMain" onClick={clickiNoTrabalhador} key={props.id+1} >
+        <div className="contentImg" key={props.id+2}>
               <img src={props.imgUrl} alt="Trabalhador 1" />
         </div>
-        <div className="contentText">
+        <div className="contentText" key={props.id+3}>
           <h3>{props.name}</h3>
           <p>{trabalhador.map(tb=>tb.projectFunc)}</p>
         </div>
