@@ -15,21 +15,21 @@ interface dados{
 
 export default function Corpo(props:dados){
   const [textTrabalhador,setTextTrabalhador] = useState('Inserir trabalhador') 
-  const [textAtualizar,setTextAtualizar] = useState('Actualizar dados')
+  const [textAddProjecto,setAddProjecto] = useState('Inserir Projecto')
   const [textListT,setTextListT] = useState('Trabalhadores')
   const [textListP,setTextListP] = useState('Projectos') 
-  const [textButtom,setTextButtom] = useState('Folha de Salário')
+  const [textButtom,setTextButtom] = useState('S. Folha de Pagamentos')
 
   
   function menuOnOrOff(){
    const signal = document.querySelector('.left')?.classList.toggle('on')
     
    if(!signal){
-    setTextTrabalhador('Inserir trabalhador'); setTextAtualizar('Actualizar dados'); 
+    setTextTrabalhador('Inserir trabalhador'); setAddProjecto('Inserir Projecto'); 
     setTextListT('Trabalhadores'); setTextListP('Projectos');
-    setTextButtom('Folha de Salário')
+    setTextButtom('S. Folha de Pagamentos')
   }else{
-    setTextTrabalhador(''); setTextAtualizar('');
+    setTextTrabalhador(''); setAddProjecto('');
     setTextListT(''); setTextListP('');
     setTextButtom('S')
   }
@@ -47,7 +47,7 @@ export default function Corpo(props:dados){
 
             <div className="texts">
             <Link to="/insert" style={{color:'#E8E9EB',textDecoration:'none'}}> <p id="inserir" >{textTrabalhador} <img src={inserir} alt="inserir" /></p></Link>
-            <Link to="/update" style={{color:'#E8E9EB',textDecoration:'none'}}> <p id="atualizar">{textAtualizar} <img src={atualizar} alt="atualizar" /></p></Link>
+            <Link to="/add-project" style={{color:'#E8E9EB',textDecoration:'none'}}> <p id="atualizar">{textAddProjecto} <img src={atualizar} alt="atualizar" /></p></Link>
             <Link to="/show-workers" style={{color:'#E8E9EB',textDecoration:'none'}}>  <p id="listarTrabalhadores">{textListT} <img src={listarTrabalhador} alt="Listar trabalhador" /></p></Link>
             <Link to="/show-projects" style={{color:'#E8E9EB',textDecoration:'none'}}> <p id="listarProjectos">{textListP} <img src={listarProjectos} alt="Listar projectos" /></p></Link>
             </div>
