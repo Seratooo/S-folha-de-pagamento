@@ -273,8 +273,8 @@ export default function PaginaInserir(){
             </fieldset>
             
             <fieldset id="fild5">
-              <input type="number" name="" id="" placeholder="Horas trabalhadas" min={0} max="24" onChange={handleWorkerHours}/>
-              <input type="number" name="" id="" placeholder="Horas atrasadas" min={0} max="24" onChange={handleDelayHours}/>
+              <input type="number" name="" id="" placeholder="Nº de Horas de trabalho por dia" min={0} max="24" onChange={handleWorkerHours}/>
+              <input type="number" name="" id="" placeholder="Quantidade de Horas atrasadas" min={0} max="24" onChange={handleDelayHours}/>
             </fieldset>
 
             <fieldset id="fild6">

@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import api from '../../services/api'
 import {Start,Start2,Start3,Start4,Start5} from '../01.11_StisticComponents/statisticData'
-import {Link} from 'react-router-dom'
 
 interface worker{
   qntd: number;
