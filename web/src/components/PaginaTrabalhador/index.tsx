@@ -129,7 +129,7 @@ export default function PaginaTrabalhador() {
 
      const salario = 25*horasDeTrablho*12.5 + bonusCargo + bonusLevel + horasDeAtraso*(-5);
     
-     setSalarioT(salario+"$")
+     setSalarioT(salario.toPrecision(6)+"$")
      handleShowSalario()
    }
 
@@ -151,19 +151,22 @@ export default function PaginaTrabalhador() {
       }
     }
 
-     if(cumprimento>=95){
+    if(cumprimento>95){
+      coeficiente=25
+    }
+     else if(cumprimento<=95 && cumprimento>80){
        coeficiente=21.5
-     }else if(cumprimento>=80 && cumprimento<=95){
+     }else if(cumprimento>=80 && cumprimento<95){
        coeficiente=18.5
      }else{
        coeficiente=15
      }
 
-     const result = Tarefas*(cumprimento/100)
+     const result = cumprimento/Tarefas*100
      const salario = result*coeficiente + bonusLevel
 
      
-     setSalarioT(salario+"$")
+     setSalarioT(salario.toPrecision(6)+"$")
      handleShowSalario()
      
    }
@@ -179,6 +182,7 @@ export default function PaginaTrabalhador() {
     await api.put(`updateNoRelated/${fk_worker}`,data)   
     document.querySelector('.MessageBackground')?.classList.toggle('off')
    }
+
   return(
     <>
 
@@ -203,8 +207,8 @@ export default function PaginaTrabalhador() {
                <strong>Nível: </strong> {trabalhador.map(tb=>tb.level)}</p>
               <p><strong>Habilidade: </strong> {trabalhador.map(tb=>tb.projectFunc)}</p>
               <p><strong>Projecto Inserido: </strong> {trabalhador.map(tb=>tb.project)}</p>
-              <p><strong>Nº de Tarefas Realizadas: </strong> {trabalhador.map(tb=>tb.tasks_performed + Number(tasks_performed))} &nbsp;&nbsp;&nbsp;&nbsp;
-              <strong> Complacência: </strong> {trabalhador.map(tb=>task_value!==0?task_value:tb.task_value)}%</p>
+              <p><strong>Nº de Tarefas: </strong> {trabalhador.map(tb=>tb.tasks_performed + Number(tasks_performed))} &nbsp;&nbsp;&nbsp;&nbsp;
+              <strong> Tarefas Cumpridas: </strong> {trabalhador.map(tb=>task_value!==0?task_value:tb.task_value)}</p>
               
               {trabalhador.map(
                 tb=>tb.isNoRelated?
@@ -212,7 +216,7 @@ export default function PaginaTrabalhador() {
                 <p><strong>Responsabilidade: </strong>{tb.responsibility} &nbsp;&nbsp;&nbsp;&nbsp;
                  <strong> Departamento: </strong>{tb.departament}</p> 
                 <p><strong>Nº de Atrasos: </strong>{Number(tb.qnt_delays) + qnt_delays}&nbsp;&nbsp;&nbsp;&nbsp;
-                 <strong> Horas trabalhadas: </strong>{Number(tb.qnt_houres_worked) + qnt_houres_worked}h</p> 
+                 <strong> Horas trabalhadas por dia: </strong>{Number(tb.qnt_houres_worked) + qnt_houres_worked}h</p> 
                 </>
                 :
                 ' '
@@ -221,13 +225,13 @@ export default function PaginaTrabalhador() {
                  
               <fieldset id="fild8">
 
-              <input type="number" name="" id="number" placeholder="Add Tarefas completadas" onChange={handleTakPerformed}/>
+              <input type="number" name="" id="number" placeholder="Adicionar Tarefa" onChange={handleTakPerformed} min={Number(trabalhador.map(tb=>tb.tasks_performed))*-1} max={100 - Number(trabalhador.map(tb=>tb.tasks_performed))}/>
     
               {trabalhador.map(
                 tb=>tb.isNoRelated?
                 <>
-                <input type="number" name="" id="" placeholder="Horas trabalhadas por dia" max="24" onChange={handleQntHoursWorked}/>
-                <input type="number" name="" id="" placeholder="Nº de Atrasos" max="24" onChange={handleQntDelay}/>
+                <input type="number" name="" id="" placeholder="Adicinar Carga Horária" min={Number(trabalhador.map(tb=>tb.qnt_houres_worked))*-1} max={24 - Number(trabalhador.map(tb=>tb.qnt_houres_worked))} onChange={handleQntHoursWorked}/>
+                <input type="number" name="" id="" placeholder="Nº de Atrasos" min={Number(trabalhador.map(tb=>tb.qnt_delays))*-1} onChange={handleQntDelay}/>
                 <select name="project_data" id="" onChange={handleProject_data}>
               <option value="">Mudar projecto</option>
               {dataOfProject.map(data=>(
@@ -240,7 +244,7 @@ export default function PaginaTrabalhador() {
               )}
               <div style={{display:'flex',alignItems:'center'}}>
               <input type="range" name="task_value" id="" placeholder="Complacêcia" value={task_value} onChange={handleTaskValue}/>
-              <p style={{fontFamily:'Roboto',padding:'10px', color:'#353A40'}}>+{task_value}%</p>
+              <p style={{fontFamily:'Roboto',padding:'10px', color:'#353A40'}}>+{task_value}</p>
               </div>
               {trabalhador.map(
                 tb=>tb.isNoRelated?
