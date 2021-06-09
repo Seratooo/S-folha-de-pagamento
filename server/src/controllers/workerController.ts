@@ -67,11 +67,6 @@ class workerController{
    }
 
    async showallRelated(request:Request,response:Response){
-    const NoRelatedworkers = await knex('workers')
-    .join('no_related_workers', 'no_related_workers.fk_worker','=','workers.id')
-    .join('projects','no_related_workers.project_data','=','projects.id')
-    .select('workers.id','workers.name','workers.level','workers.image','projects.name as projecto','no_related_workers.projectFunc','no_related_workers.tasks_performed','no_related_workers.task_value','no_related_workers.responsibility','no_related_workers.departament','no_related_workers.qnt_delays','no_related_workers.qnt_houres_worked')
-    
     const RelatedWorkers = await knex('workers')
     .join('related_workers', 'related_workers.fk_worker','=','workers.id')
     .join('projects','related_workers.project_data','=','projects.id')
@@ -103,6 +98,52 @@ class workerController{
     return response.json(serializedWorkers)
 
    }
+   async countlRelated(request:Request,response:Response){
+    const RelatedWorkers = await knex('workers')
+    .join('related_workers', 'related_workers.fk_worker','=','workers.id')
+    .join('projects','related_workers.project_data','=','projects.id')
+    .count('* as qntd')
+     
+    return response.json(RelatedWorkers)
+
+   }
+   
+   async countlNoRelated(request:Request,response:Response){
+    const NoRelatedworkers = await knex('workers')
+    .join('no_related_workers', 'no_related_workers.fk_worker','=','workers.id')
+    .join('projects','no_related_workers.project_data','=','projects.id')
+    .count('* as qntd')    
+     
+    return response.json(NoRelatedworkers)
+
+   }
+
+    
+   async bestWorker(request:Request,response:Response){
+    const NoRelatedworkers = await knex('workers')
+    .join('no_related_workers', 'no_related_workers.fk_worker','=','workers.id')
+    .join('projects','no_related_workers.project_data','=','projects.id')
+    .max('task_value as value')  
+    .select('workers.name') 
+
+    const RelatedWorkers = await knex('workers')
+    .join('related_workers', 'related_workers.fk_worker','=','workers.id')
+    .join('projects','related_workers.project_data','=','projects.id')
+    .max('task_value as value')  
+    .select('workers.name')
+
+    const value1 = Number(RelatedWorkers.map(w=>w.value))
+    const value2 = Number(NoRelatedworkers.map(w=>w.value))
+    
+    if(value1>value2){
+      return response.json(RelatedWorkers)
+    }else{
+      return response.json(NoRelatedworkers)
+    }
+
+
+   }
+
   async show(request:Request,response:Response){
 
     const { id } = request.params
@@ -110,18 +151,6 @@ class workerController{
     
     if(!worker) return response.status(400).json({message: 'Trabalhador desconhecido'})
     
-// interface rW{
-//     id: number;
-//     fk_worker: number;
-//     project_data: number;
-//     tasks_performed: number;
-//     task_value: number;
-//     image: string;
-//     name: string;
-//     date_nasc: string;
-//     level: string;
-// }
-
     const relatedWorker = await knex('related_workers')
     .join('workers', 'related_workers.fk_worker','=','workers.id')
     .where('workers.id',id)
@@ -198,10 +227,7 @@ class workerController{
     return response.json(dataWorker)
     
     }
-    getLastWorker(){
-    const idFixo = idWorker
-    return idFixo;
-  }
+    
 }
 export default workerController
 
