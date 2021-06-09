@@ -19,7 +19,7 @@ export default function PaginaListarProjectos() {
   api.get('projects').then(Response=>{
         setProjectos(Response.data)
   })
-})
+},[])
 
   return(
     <>

@@ -14,7 +14,7 @@ export default function PaginaListarTrabalhador() {
     api.get('workers').then(Response=>{
         setTrabalhadores(Response.data)
     })
-  })
+  },[])
   return(
     <>
     {trabalhadores.map(trabalhador=>(
