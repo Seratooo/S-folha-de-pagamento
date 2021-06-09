@@ -4,6 +4,7 @@ import Dropzone from '../Dropzone'
 import './style.css'
 import accaoRealizada from '../../assets/accaoRealizada.svg'
 
+
 interface dadoProjecto{
   id: number;
   name: string;
@@ -17,7 +18,7 @@ export default function PaginaInserir(){
   const [level,setLevel] = useState('')
   const [project_data,setProject_data]=useState(0)
   const [tasks_performed,setTasks_performed]=useState(0)
-  const [task_value,setTask_value]=useState(50.0)
+  const [task_value,setTask_value]=useState(0.0)
   const [responsibility,setResponsibility] = useState('')
   const [departament,setDepartament] = useState('')
   const [qnt_delays,setQnt_delays] = useState(0)
@@ -71,7 +72,7 @@ export default function PaginaInserir(){
     window.location.reload() 
   }
 
-  const [seletedFile,setSelectedFile]=useState<File|any>()
+  const [seletedFile,setSelectedFile]=useState<File|any>(null)
   const [isVinculado,setIsVinculado] =useState(true)
 
   const [lastId,setLastId] = useState<number>(0)
@@ -83,18 +84,62 @@ export default function PaginaInserir(){
   }
 
   async function handleSubmit(event:FormEvent) {  
-     getLastId()
-     carregarIMG()
+      event.preventDefault() 
+      getLastId()
      
-    event.preventDefault()     
+      if(seletedFile === null){
+          alert('Insira a foto do seu trabalhador')
+        return
+      }
+      else if(name ===''){
+        alert("Preencha o campo NOME")
+        return
+      }
+      else if(date_nasc ===''){
+        alert("Preencha a DATA DE NASCIMENTO")
+        return
+      }
+      else if(level ===''){
+        alert("Selecione o NÍVEL do trabalhador")
+        return
+      }
+     if(isVinculado){
+       if(project_data===0){
+         alert('Selecione um projecto')
+         return
+       }
+       else if(projectFunc===''){
+         alert('Insira o papel do trabalhador neste projecto')
+         return
+       }
+     }else{
 
+      if(project_data===0){
+        alert('Selecione um projecto')
+        return
+      }
+      else if(projectFunc===''){
+        alert('Insira o papel do trabalhador neste projecto')
+        return
+      }
+      else if(responsibility===''){
+        alert('Adicione Responsabilidade ao trabalhodor')
+        return
+      }
+      else if(departament===''){
+        alert('Insira o trabalhador em um departamento')
+        return
+      }
+
+     }
+      carregarIMG()
       const dataWorker = {
         image:`${lastId}${seletedFile.name}`,
         name,
         date_nasc,
         level,
-        
       }
+   
       const dataRelatedWorker = {
         fk_worker: lastId,
         project_data,
@@ -113,15 +158,15 @@ export default function PaginaInserir(){
         qnt_houres_worked,
         projectFunc
       }
-      
-    console.log({dataWorker,dataRelatedWorker,isVinculado})
+
       await api.post('workers',dataWorker).then(
         isVinculado? await api.post('related-worker',dataRelatedWorker)
        : await api.post('no-related-worker',dataNoRelatedWorker)
         )
      document.querySelector('.MessageBackground')?.classList.toggle('off')  
-
-    }
+    
+      
+     }
 
   function handleMod(event: ChangeEvent<HTMLSelectElement>){
     const value = event.target.value
@@ -175,7 +220,7 @@ export default function PaginaInserir(){
             isVinculado? 
             <>
             <fieldset id="fild1">
-            <input type="number" name="tasks_performed" id="" placeholder="Tarefas completadas" onChange={handleTasks_performed}/>
+            <input type="number" name="tasks_performed" id="" placeholder="Nº Tarefas a Cumprir" onChange={handleTasks_performed} min={0} max={100}/>
             <select name="project_data" id="" onChange={handleProject_data}>
               <option value="">Selecione o projecto</option>
               {dataOfProject.map(data=>(
@@ -185,8 +230,8 @@ export default function PaginaInserir(){
             </fieldset>
 
             <fieldset id="Range">
-            <input type="range" name="task_value" id="" placeholder="Complacêcia" onChange={handleTask_value}/>
-            <p style={{fontFamily:'Roboto',padding:'10px', color:'#353A40'}}>{task_value}%</p>
+            <input type="range" name="task_value" id="" placeholder="Complacêcia" onChange={handleTask_value} value={task_value}/>
+            <p style={{fontFamily:'Roboto',padding:'10px', color:'#353A40'}}>{task_value} Nº de Tarefas Cumpridas</p>
             </fieldset>
           
             <fieldset id="fild6">
@@ -198,7 +243,7 @@ export default function PaginaInserir(){
             <>
             
             <fieldset id="fild1">
-            <input type="number" name="" id="number" placeholder="Tarefas completadas" onChange={handleTasks_performed} />
+            <input type="number" name="" id="number" placeholder="Nº Tarefas a Cumprir" onChange={handleTasks_performed} min={0} max={100} />
             <select name="" id="" onChange={handleProject_data}>
               <option value="">Selecione o projecto</option>
               {dataOfProject.map(data=>(
@@ -208,8 +253,8 @@ export default function PaginaInserir(){
             </fieldset>
                 
             <fieldset id="Range">
-            <input type="range" name="" id="" placeholder="Complacêcia" onChange={handleTask_value}/>
-            <p>{task_value}%</p>
+            <input type="range" name="" id="" placeholder="Complacêcia" onChange={handleTask_value} value={task_value}/>
+            <p>{task_value} Nº de Tarefas Cumpridas</p>
             </fieldset>
 
             <fieldset id="fild3" >
@@ -228,8 +273,8 @@ export default function PaginaInserir(){
             </fieldset>
             
             <fieldset id="fild5">
-              <input type="number" name="" id="" placeholder="Horas trabalhadas" max="24" onChange={handleWorkerHours}/>
-              <input type="number" name="" id="" placeholder="Horas atrasadas" max="24" onChange={handleDelayHours}/>
+              <input type="number" name="" id="" placeholder="Horas trabalhadas" min={0} max="24" onChange={handleWorkerHours}/>
+              <input type="number" name="" id="" placeholder="Horas atrasadas" min={0} max="24" onChange={handleDelayHours}/>
             </fieldset>
 
             <fieldset id="fild6">
