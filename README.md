@@ -21,14 +21,3 @@
 
 
 
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>A page with an embedded video</title>
-    </head>
-    <body>
-       
-<iframe  width="425" height="344" src="https://www.youtube.com/watch?v=nJz3Dr4BLC8" frameborder="0" allowfullscreen></iframe>
-    </body>
-</html>
-
