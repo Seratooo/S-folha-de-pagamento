@@ -19,4 +19,4 @@
 
   + 3º passo: Agora é só rodar o projecto. Comece por entrar na pastar server e digitar o   comando ```yarn yarn dev```. Assim o seu backend entrará em acção. Entre agora na pasta web e digite o camando `yarn start` para rodar o frontend e prontos!!!. Após estes passos, vc também poderá rodar na versão desktop entrando na pasta web e digitar o comando `electron`.
 
-  <embed src="https://www.youtube.com/watch?v=nJz3Dr4BLC8" allowfullscreen="true" width="425" height="344">
+<iframe  width="425" height="344" src="https://www.youtube.com/watch?v=nJz3Dr4BLC8" frameborder="0" allowfullscreen></iframe>
