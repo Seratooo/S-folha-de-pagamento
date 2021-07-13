@@ -18,7 +18,7 @@ export default function Corpo(props:dados){
   const [textAddProjecto,setAddProjecto] = useState('Inserir Projecto')
   const [textListT,setTextListT] = useState('Trabalhadores')
   const [textListP,setTextListP] = useState('Projectos') 
-  const [textButtom,setTextButtom] = useState('S. Folha de Pagamentos')
+  const [textButtom,setTextButtom] = useState('Folha de Pagamentos')
 
   
   function menuOnOrOff(){
@@ -27,11 +27,11 @@ export default function Corpo(props:dados){
    if(!signal){
     setTextTrabalhador('Inserir trabalhador'); setAddProjecto('Inserir Projecto'); 
     setTextListT('Trabalhadores'); setTextListP('Projectos');
-    setTextButtom('S. Folha de Pagamentos')
+    setTextButtom('Folha de Pagamentos')
   }else{
     setTextTrabalhador(''); setAddProjecto('');
     setTextListT(''); setTextListP('');
-    setTextButtom('S')
+    setTextButtom('F.P')
   }
    
   }
@@ -53,7 +53,7 @@ export default function Corpo(props:dados){
             </div>
 
             <div className="boxButtom">
-                  <button>{textButtom}</button>
+                <Link to="/salary"><button>{textButtom}</button></Link>
             </div>
       </aside>
       
