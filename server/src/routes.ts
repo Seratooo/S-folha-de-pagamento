@@ -15,6 +15,7 @@ const noRelatedWork = new noRelatedWorkerController()
 
 routes.get('/workers', worker.getWorkers)
 routes.get('/workers/:id', worker.show)
+routes.get('/workerSalary',worker.showWorkerSalary)
 routes.get('/allRelatedworkers/', worker.showallRelated)
 routes.get('/allNoRelatedworkers/', worker.showallNoRelated)
 routes.get('/workers_related_by_project/:id', worker.showRelatedWorkers_withProject)
