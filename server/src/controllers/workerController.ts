@@ -220,12 +220,71 @@ class workerController{
     }
   }
 
+  async showWorkerSalary(request:Request,response:Response){
+
+    
+    const relatedWorker = await knex('related_workers')
+    .join('workers', 'related_workers.fk_worker','=','workers.id')
+    .join('projects','related_workers.project_data','=','projects.id')
+    .select('workers.id','workers.name','workers.level','workers.image','projects.name as project','projects.completion_percentage','related_workers.projectFunc','related_workers.project_data','related_workers.tasks_performed','related_workers.task_value','related_workers.fk_worker')
+  
+    const serializedRelatedWorkers  = relatedWorker.map(work => {
+      return {
+        id: work.id,
+        fk_worker: work.fk_worker,
+        fk_projecto: work.project_data,
+        name: work.name,
+        level:work.level,
+        imgUrl: `http://localhost:3333/uploads/${work.image}`,
+        project: work.project,
+        completion_percentage:work.completion_percentage,
+        projectFunc: work.projectFunc,
+        tasks_performed: work.tasks_performed,
+        task_value: work.task_value,
+        isNoRelated: false
+      }
+    })
+  
+    const noRelatedWorker = await knex('no_related_workers')
+    .join('workers', 'no_related_workers.fk_worker','=','workers.id')
+    .join('projects','no_related_workers.project_data','=','projects.id')
+    .select('workers.id','workers.name','workers.level','workers.image','projects.name as project','projects.completion_percentage','no_related_workers.projectFunc','no_related_workers.project_data','no_related_workers.tasks_performed','no_related_workers.task_value','no_related_workers.responsibility','no_related_workers.departament','no_related_workers.qnt_delays','no_related_workers.qnt_houres_worked','no_related_workers.fk_worker')
+    
+
+    const serializedNoRelatedWorkers  = noRelatedWorker.map(work => {
+      return {
+        id: work.id,
+        fk_worker:work.fk_worker,
+        fk_projecto: work.project_data,
+        name: work.name,
+        level:work.level,
+        imgUrl: `http://localhost:3333/uploads/${work.image}`,
+        project: work.project,
+        completion_percentage:work.completion_percentage,
+        projectFunc: work.projectFunc,
+        tasks_performed: work.tasks_performed,
+        task_value: work.task_value,
+        responsibility: work.responsibility,
+        departament: work.departament,
+        qnt_delays: work.qnt_delays,
+        qnt_houres_worked: work.qnt_houres_worked,
+        isNoRelated: true
+      }
+    })
+
+    
+    
+   return response.json(
+      [...serializedNoRelatedWorkers, ...serializedRelatedWorkers]
+    )
+    
+  }
+
   async index(request:Request, response:Response){
     
     const {name,level}= request.query
     const dataWorker = await knex('workers').where('name','like', String('%'+name+'%')).where('level','like', String('%'+level+'%'))
     return response.json(dataWorker)
-    
     }
     
 }
