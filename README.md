@@ -1,3 +1,4 @@
+<img src="Img/logo.svg">
 # Sistema de Folha de Pagamento
 
 ### Descrição
